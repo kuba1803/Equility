@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
    <children>
       <MenuBar>
         <menus>
@@ -31,9 +31,9 @@
       </MenuBar>
       <Pane prefHeight="498.0" prefWidth="800.0">
          <children>
-            <Pane layoutX="120.0" layoutY="76.0">
+            <Pane fx:id="Panel1" layoutX="120.0" layoutY="76.0">
                <children>
-                  <Label alignment="CENTER" layoutY="38.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="MP3" alignment="CENTER" layoutY="38.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
@@ -53,27 +53,27 @@
                         <Image url="@revers.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" layoutX="244.0" layoutY="260.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="BB" alignment="CENTER" layoutX="244.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutY="222.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="MP2" alignment="CENTER" layoutY="222.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="494.0" layoutY="222.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="SB" alignment="CENTER" layoutX="494.0" layoutY="222.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="244.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="CO" alignment="CENTER" layoutX="244.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="494.0" layoutY="38.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                  <Label fx:id="BU" alignment="CENTER" layoutX="494.0" layoutY="38.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
@@ -90,57 +90,29 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane disable="true" layoutX="174.0" layoutY="149.0" opacity="0.85" prefHeight="200.0" prefWidth="454.0" style="-fx-background-color: #3574c9;" visible="false">
+            <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="149.0" opacity="0.85" prefHeight="200.0" prefWidth="454.0" style="-fx-background-color: #3574c9;" visible="false">
                <children>
-                  <ChoiceBox id="position" fx:id="position" layoutX="152.0" layoutY="14.0" prefWidth="150.0" />
                   <Button layoutX="57.0" layoutY="101.0" mnemonicParsing="false" text="Wybór zakresu" />
                   <Button layoutX="302.0" layoutY="101.0" mnemonicParsing="false" text="Wybór kart" />
-                  <Button layoutX="211.0" layoutY="161.0" mnemonicParsing="false" text="OK" />
-                  <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="426.0" />
+                  <Button layoutX="211.0" layoutY="161.0" mnemonicParsing="false" onAction="#handlerConfirm" text="OK" />
+                  <TextField fx:id="Input" layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="426.0" />
                </children>
             </Pane>
-            <Pane disable="true" layoutX="175.0" layoutY="150.0" opacity="0.85" prefHeight="200.0" prefWidth="454.0" style="-fx-background-color: #3574c9;" visible="false">
+            <Pane layoutX="190.0" layoutY="145.0" opacity="0.8" prefHeight="200.0" prefWidth="426.0" style="-fx-background-color: #3574c9;" visible="false">
                <children>
-                  <Button layoutX="57.0" layoutY="101.0" mnemonicParsing="false" text="Wybór zakresu" />
-                  <Button layoutX="302.0" layoutY="101.0" mnemonicParsing="false" text="Wybór kart" />
-                  <Button layoutX="211.0" layoutY="161.0" mnemonicParsing="false" text="OK" />
-                  <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="426.0" />
-                  <CheckBox layoutX="180.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="Akytwny">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </CheckBox>
+                  <Label layoutX="14.0" layoutY="23.0" text="K&#10;&amp;spades;" visible="false" />
                </children>
             </Pane>
          </children></Pane>
       <HBox prefHeight="76.0" prefWidth="800.0">
          <children>
-            <Button id="Clear" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Wyczyść">
+            <Button id="Clear" mnemonicParsing="false" onAction="#handleButtonClear" prefHeight="100.0" prefWidth="200.0" text="Wyczyść">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #82d435;" text="Wygrana">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #82d435;">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #c53737;">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #c53737;" text="Porażka">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button id="Comut" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
+            <TextArea fx:id="Output" editable="false" prefHeight="76.0" prefWidth="400.0" />
+            <Button id="Comut" mnemonicParsing="false" onAction="#handleButtonComut" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
                <font>
                   <Font size="20.0" />
                </font>
