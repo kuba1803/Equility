@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -27,7 +29,90 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane prefHeight="498.0" prefWidth="800.0" />
+      <Pane prefHeight="498.0" prefWidth="800.0">
+         <children>
+            <Pane layoutX="120.0" layoutY="76.0">
+               <children>
+                  <Label alignment="CENTER" layoutY="38.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="76.0" fitWidth="46.0" layoutX="210.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@revers.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView disable="true" fitHeight="76.0" fitWidth="46.0" layoutX="294.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@revers.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="76.0" fitWidth="46.0" layoutX="164.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@revers.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="244.0" layoutY="260.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="222.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="494.0" layoutY="222.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="244.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="494.0" layoutY="38.0" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView disable="true" fitHeight="76.0" fitWidth="46.0" layoutX="376.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@revers.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="76.0" fitWidth="46.0" layoutX="118.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@revers.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane disable="true" layoutX="174.0" layoutY="149.0" opacity="0.85" prefHeight="200.0" prefWidth="454.0" style="-fx-background-color: #3574c9;" visible="false">
+               <children>
+                  <ChoiceBox id="position" fx:id="position" layoutX="152.0" layoutY="14.0" prefWidth="150.0" />
+                  <Button layoutX="57.0" layoutY="101.0" mnemonicParsing="false" text="Wybór zakresu" />
+                  <Button layoutX="302.0" layoutY="101.0" mnemonicParsing="false" text="Wybór kart" />
+                  <Button layoutX="211.0" layoutY="161.0" mnemonicParsing="false" text="OK" />
+                  <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="426.0" />
+               </children>
+            </Pane>
+            <Pane disable="true" layoutX="175.0" layoutY="150.0" opacity="0.85" prefHeight="200.0" prefWidth="454.0" style="-fx-background-color: #3574c9;" visible="false">
+               <children>
+                  <Button layoutX="57.0" layoutY="101.0" mnemonicParsing="false" text="Wybór zakresu" />
+                  <Button layoutX="302.0" layoutY="101.0" mnemonicParsing="false" text="Wybór kart" />
+                  <Button layoutX="211.0" layoutY="161.0" mnemonicParsing="false" text="OK" />
+                  <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="426.0" />
+                  <CheckBox layoutX="180.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="94.0" text="Akytwny">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </Pane>
+         </children></Pane>
       <HBox prefHeight="76.0" prefWidth="800.0">
          <children>
             <Button id="Clear" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Wyczyść">
