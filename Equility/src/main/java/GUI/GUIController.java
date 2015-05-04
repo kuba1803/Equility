@@ -9,7 +9,9 @@ import Controller.MainControler;
 import equility.MainApp;
 import javafx.scene.control.TextArea;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -37,7 +39,19 @@ public class GUIController implements Initializable {
 
     @FXML
     private void handleButtonClear(ActionEvent event) {
-        System.out.print("Czysc");
+        ObservableList list =Panel1.getChildren();
+        Iterator iter = list.iterator();
+        while(iter.hasNext())
+        {
+            Object o =iter.next();
+            System.out.println(o.getClass().getName());
+            if(o.getClass().getName().equals("javafx.scene.control.Label"))
+            {
+                Label l=(Label)o;
+                l.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d");
+            }
+        }
+        contr.Clear();
     }
 
     @FXML

@@ -28,4 +28,8 @@ public class Position {
     public String GetId(){
         return id;
     }
+    public void clear()
+    {
+        range = "";
+    }
 }

@@ -57,7 +57,12 @@ public class MainModel implements MainControler {
 
     @Override
     public void Clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Iterator<Position>iter = position.iterator();
+        while(iter.hasNext())
+        {
+            Position p = iter.next();
+            p.clear();
+        }
     }
 
     @Override
