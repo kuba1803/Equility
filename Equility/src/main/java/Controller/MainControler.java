@@ -12,7 +12,7 @@ package Controller;
 public interface MainControler {
     public String getRange(String pos);
     public String getScore();
-    public String setRange(String pos,String range);
+    public void setRange(String pos,String range);
     public void Clear();
     public boolean checkRange(String range);
     public String getFloop();
