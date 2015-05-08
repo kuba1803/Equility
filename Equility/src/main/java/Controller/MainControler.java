@@ -22,4 +22,5 @@ public interface MainControler {
     public String getRiver();
     public void SetRiver(String river);
     
+    //does it even work? (witek)
 }
