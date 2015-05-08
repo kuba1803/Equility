@@ -7,14 +7,8 @@ package Model;
 
 /**
  *
- * @author kuba1_000
+ * @author witek
  */
-public class Table {
-    Card River;
-    Card Turn;
-    Card[] Flop;
-    public Table()
-    {
-        Flop = new Card[3];
-    }
+class Hand {
+    
 }

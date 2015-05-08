@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.List;
+
 /**
  *
  * @author kuba1_000
@@ -12,6 +14,7 @@ package Model;
 public class Position {
     private final String id;
     private String range;
+    private List<Hand> explicitRange;
     public Position(String id)
     {
         this.id= id;

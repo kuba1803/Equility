@@ -55,7 +55,7 @@ public class GUIController implements Initializable {
     }
 
     @FXML
-    private void handleButtonComut(ActionEvent event) {
+    private void handleButtonCompute(ActionEvent event) {
         Output.setText("Obliczam");
     }
 

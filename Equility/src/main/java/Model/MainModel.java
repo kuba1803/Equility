@@ -13,19 +13,19 @@ import java.util.Iterator;
  */
 public class MainModel implements MainControler {
     
-    private ArrayList<Position> position = new ArrayList<>();
+    private ArrayList<Position> positions = new ArrayList<>();
     public MainModel()
     {
-        position.add(new Position("BB"));
-        position.add(new Position("SB"));
-        position.add(new Position("BU"));
-        position.add(new Position("CO"));
-        position.add(new Position("MP3"));
-        position.add(new Position("MP2"));
+        positions.add(new Position("BB"));
+        positions.add(new Position("SB"));
+        positions.add(new Position("BU"));
+        positions.add(new Position("CO"));
+        positions.add(new Position("MP3"));
+        positions.add(new Position("MP2"));
     }
     @Override
     public String getRange(String pos) {
-        Iterator<Position>iter = position.iterator();
+        Iterator<Position>iter = positions.iterator();
         while(iter.hasNext())
         {
             Position p = iter.next();
@@ -38,13 +38,13 @@ public class MainModel implements MainControler {
     }
 
     @Override
-    public String getScore() {
+    public String getEquity() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void setRange(String pos, String range) {
-        Iterator<Position>iter = position.iterator();
+        Iterator<Position>iter = positions.iterator();
         while(iter.hasNext())
         {
             Position p = iter.next();
@@ -57,7 +57,7 @@ public class MainModel implements MainControler {
 
     @Override
     public void Clear() {
-        Iterator<Position>iter = position.iterator();
+        Iterator<Position>iter = positions.iterator();
         while(iter.hasNext())
         {
             Position p = iter.next();
