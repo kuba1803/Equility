@@ -112,7 +112,7 @@
                </font>
             </Button>
             <TextArea fx:id="Output" editable="false" prefHeight="76.0" prefWidth="400.0" />
-            <Button id="Comut" mnemonicParsing="false" onAction="#handleButtonComut" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
+            <Button id="Compute" mnemonicParsing="false" onAction="#handleButtonCompute" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
                <font>
                   <Font size="20.0" />
                </font>

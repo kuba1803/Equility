@@ -6,6 +6,7 @@
 package Model;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -23,6 +24,11 @@ public class Position {
     public void SetRange(String str)
     {
         range = str;
+        Scanner scanner = new Scanner(str);
+        while(scanner.hasNext())
+            explicitRange.add(new Hand(scanner.next()));
+        for(Hand h: explicitRange)
+            System.out.println("h");
     }
     public String GetRange()
     {
