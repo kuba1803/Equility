@@ -21,6 +21,4 @@ public interface MainControler {
     public void setTurn(String turn);
     public String getRiver();
     public void SetRiver(String river);
-    
-    //does it even work? (witek)
 }

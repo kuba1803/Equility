@@ -5,6 +5,7 @@
  */
 package Model;
 import Controller.MainControler;
+import GUI.GUIController;
 import java.util.ArrayList;
 import java.util.Iterator;
 /**
@@ -12,7 +13,7 @@ import java.util.Iterator;
  * @author kuba1_000
  */
 public class MainModel implements MainControler {
-    
+
     private ArrayList<Position> positions = new ArrayList<>();
     public MainModel()
     {
@@ -39,7 +40,10 @@ public class MainModel implements MainControler {
 
     @Override
     public String getEquity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Deck d = new Deck();
+        d.shuffle();
+        System.out.println(d);
+        return "...";
     }
 
     @Override

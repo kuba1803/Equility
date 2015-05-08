@@ -56,9 +56,14 @@ public class GUIController implements Initializable {
 
     @FXML
     private void handleButtonCompute(ActionEvent event) {
+        contr.getEquity();
         Output.setText("Obliczam");
     }
-
+    
+    public void display(String text){
+        Output.appendText(text);
+    }
+    
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.print(event.getSource());
@@ -116,6 +121,8 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contr = MainApp.contr;
+        
+        
     }
 
 }
