@@ -5,6 +5,7 @@
  */
 package Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,20 +16,20 @@ import java.util.Scanner;
 public class Position {
     private final String id;
     private String range;
-    private List<Hand> explicitRange;
+    private List<String> explicitRange;
     public Position(String id)
     {
         this.id= id;
         range = "";
+       explicitRange = new ArrayList<>();
     }
     public void SetRange(String str)
     {
         range = str;
         Scanner scanner = new Scanner(str);
         while(scanner.hasNext())
-            explicitRange.add(new Hand(scanner.next()));
-        for(Hand h: explicitRange)
-            System.out.println("h");
+            explicitRange.add(scanner.next());
+        
     }
     public String GetRange()
     {
