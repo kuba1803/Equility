@@ -8,16 +8,22 @@ package GUI;
 import Controller.MainControler;
 import equility.MainApp;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -72,6 +78,21 @@ public class GUIController implements Initializable {
     GridPane cardTable;
     
     @FXML
+    Text eqMP3;
+     @FXML
+    Text eqCO;
+      @FXML
+    Text eqBU;
+       @FXML
+    Text eqSB;
+        @FXML
+    Text eqBB;
+         @FXML
+    Text eqMP2;
+       
+    
+    
+    @FXML
     GridPane handChart;
 
     @FXML
@@ -88,16 +109,38 @@ public class GUIController implements Initializable {
         }
         contr.Clear();
     }
+    
+    
+    public static double round(double value, int places) {
+    if (places < 0) throw new IllegalArgumentException();
+
+    BigDecimal bd = new BigDecimal(value);
+    bd = bd.setScale(places, RoundingMode.HALF_UP);
+    return bd.doubleValue();
+}
+    String[] positionList = {   "eqMP3", "eqCO","eqBU","eqSB","eqBB","eqMP2"};
 
     @FXML
     private void handleButtonCompute(ActionEvent event) {
         contr.getEquity();
+        Random rn = new Random();
+        for(Node n: Panel1.getChildren())
+            if(n.getClass().equals(Text.class)){
+                Text t = (Text)n;
+                double res = rn.nextDouble();
+                t.setText(String.valueOf(round(res*100, 2))+"%");
+                t.setFill(Color.rgb((int)(res*255), 255-(int)(res*255), 30));
+                
+            }
+        
+        
         Output.setText("Obliczam");
     }
 
     public void display(String text) {
         Output.appendText(text);
     }
+    
  String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
  String[] suits = {"c", "d", "h", "s"};
     public String intToRank(int r) {
@@ -164,7 +207,7 @@ public class GUIController implements Initializable {
                     Input.setText(oldText.replaceAll(h, ""));
                    which.setFill(Color.STEELBLUE);
                 }else{
-                    Input.appendText(intToRank(row) + intToRank(col) + (row > col ? "s" : (row == col ? "" : "o")) + " ");
+                    Input.appendText(h);
                     which.setFill(Color.RED);
                 }
             }

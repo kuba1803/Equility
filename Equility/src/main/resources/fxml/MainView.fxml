@@ -32,7 +32,7 @@
       </MenuBar>
       <Pane prefHeight="498.0" prefWidth="800.0">
          <children>
-            <Pane fx:id="Panel1" layoutX="120.0" layoutY="76.0">
+            <Pane fx:id="Panel1" layoutX="86.0" layoutY="68.0" prefHeight="336.0" prefWidth="635.0">
                <children>
                   <Label fx:id="MP3" alignment="CENTER" layoutY="38.0" onMouseClicked="#handleLabelPosition" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
                      <font>
@@ -89,9 +89,39 @@
                         <Image url="@revers.png" />
                      </image>
                   </ImageView>
+                  <Text fx:id="eqCO" layoutX="329.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="eqMP3" layoutX="83.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="eqMP2" layoutX="83.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="eqBB" layoutX="329.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="eqBU" layoutX="578.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="eqSB" layoutX="578.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
-            <Pane fx:id="Panel3" disable="true" layoutX="56.0" layoutY="46.0" prefHeight="358.0" prefWidth="691.0" visible="false">
+            <Pane fx:id="Panel3" disable="true" layoutX="56.0" layoutY="46.0" prefHeight="358.0" prefWidth="728.0" visible="false">
                <children>
                   <GridPane fx:id="cardTable" layoutY="-1.0" prefHeight="358.0" prefWidth="765.0">
                     <columnConstraints>
