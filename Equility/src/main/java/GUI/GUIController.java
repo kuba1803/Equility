@@ -13,12 +13,21 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -36,18 +45,20 @@ public class GUIController implements Initializable {
     Pane Panel2;
     @FXML
     TextArea Output;
+    @FXML
+    BorderPane borderPane;
+
+    GridPane handChart;
 
     @FXML
     private void handleButtonClear(ActionEvent event) {
-        ObservableList list =Panel1.getChildren();
+        ObservableList list = Panel1.getChildren();
         Iterator iter = list.iterator();
-        while(iter.hasNext())
-        {
-            Object o =iter.next();
+        while (iter.hasNext()) {
+            Object o = iter.next();
             System.out.println(o.getClass().getName());
-            if(o.getClass().getName().equals("javafx.scene.control.Label"))
-            {
-                Label l=(Label)o;
+            if (o.getClass().getName().equals("javafx.scene.control.Label")) {
+                Label l = (Label) o;
                 l.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d");
             }
         }
@@ -59,11 +70,11 @@ public class GUIController implements Initializable {
         contr.getEquity();
         Output.setText("Obliczam");
     }
-    
-    public void display(String text){
+
+    public void display(String text) {
         Output.appendText(text);
     }
-    
+
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.print(event.getSource());
@@ -72,6 +83,29 @@ public class GUIController implements Initializable {
         Panel1.setDisable(true);
         Panel2.setVisible(true);
         Panel2.setDisable(false);
+        handChart = new GridPane();
+
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 13; j++) {
+                final Rectangle rectangle = new Rectangle(30, 15);
+               
+                rectangle.setStroke(Paint.valueOf("orange"));
+                rectangle.setFill(Paint.valueOf("steelblue"));
+                
+                rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    
+                    @Override
+                    public void handle(MouseEvent t) {
+                        Input.appendText(" another");
+                        rectangle.setFill(Color.RED);
+                    }
+                });
+                handChart.add(rectangle, j, i);
+            }
+        }
+        borderPane.setCenter(handChart);
+        BorderPane.setAlignment(handChart, Pos.CENTER);
+
     }
 
     @FXML
@@ -121,8 +155,7 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         contr = MainApp.contr;
-        
-        
+
     }
 
 }
