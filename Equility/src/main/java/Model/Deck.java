@@ -9,7 +9,7 @@ import java.util.*;
 
 
 public class Deck {
-    static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
     static String[] suits = {"c", "d", "h", "s"};
     List<Card> cards;
     public Deck(){

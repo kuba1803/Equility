@@ -20,6 +20,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -28,6 +29,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -75,6 +77,11 @@ public class GUIController implements Initializable {
         Output.appendText(text);
     }
 
+    public String intToRank(int r) {
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
+        return ranks[r];
+    }
+
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.print(event.getSource());
@@ -85,22 +92,50 @@ public class GUIController implements Initializable {
         Panel2.setDisable(false);
         handChart = new GridPane();
 
+        class MarkHand implements javafx.event.EventHandler<MouseEvent> {
+
+            Rectangle which;
+
+            MarkHand(Rectangle which) {
+                this.which = which;
+            }
+
+            @Override
+            public void handle(MouseEvent t) {
+                int row = GridPane.getRowIndex(which);
+                int col = GridPane.getColumnIndex(which);
+                String h = intToRank(row) + intToRank(col) + (row > col ? "s" : (row == col ? "" : "o"))+ " ";
+                if(which.getFill().equals(Color.RED)){
+                   String oldText = Input.getText();
+                    Input.setText(oldText.replaceAll(h, ""));
+                   which.setFill(Color.STEELBLUE);
+                }else{
+                    Input.appendText(intToRank(row) + intToRank(col) + (row > col ? "s" : (row == col ? "" : "o")) + " ");
+                    which.setFill(Color.RED);
+                }
+            }
+        }
+        
+
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 13; j++) {
                 final Rectangle rectangle = new Rectangle(30, 15);
-               
-                rectangle.setStroke(Paint.valueOf("orange"));
-                rectangle.setFill(Paint.valueOf("steelblue"));
                 
-                rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    
-                    @Override
-                    public void handle(MouseEvent t) {
-                        Input.appendText(" another");
-                        rectangle.setFill(Color.RED);
-                    }
-                });
+                String h = intToRank(j) + intToRank(i) + (j > i ? "s" : (j == i ? "" : "o"))+ " ";
+                final Text handName = new Text(h);
+                if(Input.getText().contains(h)){
+                   
+                    rectangle.setFill(Paint.valueOf("Red"));
+                }else
+                    rectangle.setFill(Paint.valueOf("steelblue"));
+                rectangle.setStroke(Paint.valueOf("orange"));
+                
+                
+               
+                rectangle.setOnMouseClicked(new MarkHand(rectangle));
+                handName.setOnMouseClicked(new MarkHand(rectangle));
                 handChart.add(rectangle, j, i);
+                handChart.add(handName, j, i);
             }
         }
         borderPane.setCenter(handChart);
