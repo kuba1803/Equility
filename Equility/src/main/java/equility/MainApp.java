@@ -6,6 +6,9 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -18,6 +21,11 @@ public class MainApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
         
         Scene scene = new Scene(root);
+        
+    
+  
+
+        
         
         stage.setTitle("Projekt Equility");
         stage.setScene(scene);

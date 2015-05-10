@@ -7,6 +7,7 @@ package GUI;
 
 import Controller.MainControler;
 import equility.MainApp;
+import java.io.File;
 import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.Iterator;
@@ -20,10 +21,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -46,10 +50,28 @@ public class GUIController implements Initializable {
     @FXML
     Pane Panel2;
     @FXML
+    Pane Panel3;
+    @FXML
     TextArea Output;
     @FXML
     BorderPane borderPane;
 
+    @FXML
+    ImageView flop1;
+    @FXML
+    ImageView flop2;
+    @FXML
+    ImageView flop3;
+    @FXML
+    ImageView turn;
+    @FXML
+    ImageView river;
+    @FXML
+    ImageView test;
+    @FXML
+    GridPane cardTable;
+    
+    @FXML
     GridPane handChart;
 
     @FXML
@@ -76,12 +98,44 @@ public class GUIController implements Initializable {
     public void display(String text) {
         Output.appendText(text);
     }
-
+ String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
+ String[] suits = {"c", "d", "h", "s"};
     public String intToRank(int r) {
-        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
+       
         return ranks[r];
     }
+    
+  
+    @FXML
+    private void handleTableChoice(final MouseEvent clickTableCard) {
+        Panel3.setVisible(true);
+        Panel3.setDisable(false);
+        Panel1.setDisable(true);
+        
+       for(int i=0; i<4; i++)
+           for(int j=0; j<13; j++){
+               Image image = new Image(getClass().getResourceAsStream("/fxml/"+ranks[j]+suits[i]+".png"));
+               ImageView v = new ImageView(image);
+               v.addEventHandler(MouseEvent.MOUSE_CLICKED,new  javafx.event.EventHandler<MouseEvent>(){
 
+                   @Override
+                   public void handle(MouseEvent event) {
+                       System.out.println("cardClicked");
+                       ((ImageView)clickTableCard.getSource()).setImage(((ImageView)event.getSource()).getImage());
+                       Panel3.setVisible(false);
+                       Panel3.setDisable(true);
+                       Panel1.setDisable(false);
+                      
+                   }
+               });
+               
+               cardTable.add(v, j  ,i);
+           }
+        
+    
+        //((ImageView) event.getSource()).setImage(image);
+    }
+    
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.print(event.getSource());
