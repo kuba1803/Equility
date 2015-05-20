@@ -231,8 +231,16 @@ public class GUIController implements Initializable {
             public void handle(MouseEvent t) {
                 int row = GridPane.getRowIndex(which);
                 int col = GridPane.getColumnIndex(which);
-                String h = intToRank(row) + intToRank(col) + (row > col ? "s" : (row == col ? "" : "o"))+ " ";
+
+                String h;
+                if(row>col)
+                    h = intToRank(row)+intToRank(col)+"s ";
+                else if(row<col)
+                    h = intToRank(col)+intToRank(row)+"o ";
+                else
+                    h =  intToRank(row)+ intToRank(row)+" ";
                 if(which.getFill().equals(Color.RED)){
+                    System.out.println("hello "+h);
                    String oldText = Input.getText();
                     Input.setText(oldText.replaceAll(h, ""));
                    which.setFill(Color.STEELBLUE);
@@ -244,11 +252,18 @@ public class GUIController implements Initializable {
         }
         
 
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
+        for (int row = 0; row < 13; row++) {
+            for (int col = 0; col < 13; col++) {
                 final Rectangle rectangle = new Rectangle(30, 15);
-                
-                String h = intToRank(j) + intToRank(i) + (j > i ? "s" : (j == i ? "" : "o"))+ " ";
+
+                String h = null;
+                if(row>col)
+                    h = intToRank(row)+intToRank(col)+"s ";
+                else if(row<col)
+                    h = intToRank(col)+intToRank(row)+"o ";
+                else
+                    h =  intToRank(row)+ intToRank(row)+" ";
+
                 final Text handName = new Text(h);
                 if(Input.getText().contains(h)){
                    
@@ -261,8 +276,8 @@ public class GUIController implements Initializable {
                
                 rectangle.setOnMouseClicked(new MarkHand(rectangle));
                 handName.setOnMouseClicked(new MarkHand(rectangle));
-                handChart.add(rectangle, j, i);
-                handChart.add(handName, j, i);
+                handChart.add(rectangle, col, row);
+                handChart.add(handName, col, row);
             }
         }
         borderPane.setCenter(handChart);
