@@ -84,7 +84,20 @@ public class GUIController implements Initializable {
     ImageView test;
     @FXML
     GridPane cardTable;
-    
+
+    @FXML
+    Text rangeMP3;
+    @FXML
+    Text rangeCO;
+    @FXML
+    Text rangeBU;
+    @FXML
+    Text rangeSB;
+    @FXML
+    Text rangeBB;
+    @FXML
+    Text rangeMP2;
+
     @FXML
     Text eqMP3;
      @FXML
@@ -217,7 +230,7 @@ public class GUIController implements Initializable {
         Panel1.setDisable(true);
         Panel2.setVisible(true);
         Panel2.setDisable(false);
-        handChart = new GridPane();
+
 
         class MarkHand implements javafx.event.EventHandler<MouseEvent> {
 
@@ -298,26 +311,32 @@ public class GUIController implements Initializable {
                 switch (pos) {
                     case "BB": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
+                        rangeBB.setText(str);
                         break;
                     }
                     case "SB": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
+                        rangeSB.setText(str);
                         break;
                     }
                     case "BU": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
+                        rangeBU.setText(str);
                         break;
                     }
                     case "CO": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
+                        rangeCO.setText(str);
                         break;
                     }
                     case "MP3": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
+                        rangeMP3.setText(str);
                         break;
                     }
                     case "MP2": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
+                        rangeMP2.setText(str);
                         break;
                     }
                 }
