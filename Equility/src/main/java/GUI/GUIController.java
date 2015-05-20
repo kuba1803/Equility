@@ -7,9 +7,16 @@ package GUI;
 
 import Controller.MainControler;
 import equility.MainApp;
+
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.Iterator;
@@ -40,6 +47,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -89,11 +97,11 @@ public class GUIController implements Initializable {
     Text eqBB;
          @FXML
     Text eqMP2;
-       
-    
-    
+
+
     @FXML
     GridPane handChart;
+
 
     @FXML
     private void handleButtonClear(ActionEvent event) {
@@ -109,8 +117,30 @@ public class GUIController implements Initializable {
         }
         contr.Clear();
     }
-    
-    
+
+    @FXML
+   public void handleTrainingStart(ActionEvent event){
+
+            Parent root;
+            try {
+                root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/TrainingView.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("My New Stage Title");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                //hide this current window (if this is whant you want
+                //((Node)(event.getSource())).getScene().getWindow().hide();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+    }
+
+
+
+
     public static double round(double value, int places) {
     if (places < 0) throw new IllegalArgumentException();
 

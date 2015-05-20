@@ -23,6 +23,11 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Training">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#handleTrainingStart" text="Start" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
