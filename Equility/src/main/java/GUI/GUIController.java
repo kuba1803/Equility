@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
@@ -38,11 +39,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -86,19 +83,6 @@ public class GUIController implements Initializable {
     GridPane cardTable;
 
     @FXML
-    Text rangeMP3;
-    @FXML
-    Text rangeCO;
-    @FXML
-    Text rangeBU;
-    @FXML
-    Text rangeSB;
-    @FXML
-    Text rangeBB;
-    @FXML
-    Text rangeMP2;
-
-    @FXML
     Text eqMP3;
      @FXML
     Text eqCO;
@@ -114,6 +98,8 @@ public class GUIController implements Initializable {
 
     @FXML
     GridPane handChart;
+    @FXML
+    Group equityDisplays;
 
 
     @FXML
@@ -130,6 +116,66 @@ public class GUIController implements Initializable {
         }
         contr.Clear();
     }
+
+    @FXML
+    Pane displayPane;
+
+    @FXML
+    private void handleMouseEntered(MouseEvent event){
+        System.out.println("mma re");
+        displayPane.setStyle("-fx-background-color: transparent;");
+        displayPane.setPrefSize(200, 200);
+
+        actual = (Label) event.getSource();
+        String tempRange = contr.getRange(actual.getText());
+
+        for (int row = 0; row < 13; row++) {
+            for (int col = 0; col < 13; col++) {
+                final RangeRect rectangle = new RangeRect(25, 25);
+
+                String h = null;
+                if(row>col)
+                    h = intToRank(row)+intToRank(col)+"s ";
+                else if(row<col)
+                    h = intToRank(col)+intToRank(row)+"o ";
+                else
+                    h =  intToRank(row)+ intToRank(row)+" ";
+
+                final Text handName = new Text(h);
+                if(tempRange.contains(h)){
+
+                    rectangle.setFill(Paint.valueOf("Red"));
+                }else
+                    rectangle.setFill(Paint.valueOf("steelblue"));
+                rectangle.setStroke(Paint.valueOf("orange"));
+
+
+                rectangle.col = col;
+                rectangle.row = row;
+                rectangle.setX(100+col*25);
+
+                rectangle.setY(100+row*25);
+                displayPane.getChildren().add(rectangle);
+
+
+            }
+        }
+
+
+
+        displayPane.setMouseTransparent(true);
+        displayPane.toFront();
+        displayPane.setLayoutX(Math.min(((Label)event.getSource()).getLayoutX(), Panel1.getWidth()-13*25+50));
+        displayPane.setLayoutY(Math.min(((Label)event.getSource()).getLayoutY(),Panel1.getHeight()-13*25 +50));
+        displayPane.setVisible(true);
+
+
+    }
+    @FXML
+    private void handleMouseExited(MouseEvent event){
+        displayPane.setVisible(false);
+    }
+
 
     @FXML
    public void handleTrainingStart(ActionEvent event){
@@ -167,13 +213,13 @@ public class GUIController implements Initializable {
     private void handleButtonCompute(ActionEvent event) {
         contr.getEquity();
         Random rn = new Random();
-        for(Node n: Panel1.getChildren())
+        for(Node n: equityDisplays.getChildren())
             if(n.getClass().equals(Text.class)){
                 Text t = (Text)n;
                 double res = rn.nextDouble();
                 t.setText(String.valueOf(round(res*100, 2))+"%");
                 t.setFill(Color.rgb((int)(res*255), 255-(int)(res*255), 30));
-                
+
             }
         
         
@@ -221,7 +267,17 @@ public class GUIController implements Initializable {
     
         //((ImageView) event.getSource()).setImage(image);
     }
-    
+
+    class RangeRect extends Rectangle{
+        int row;
+        int col;
+        public RangeRect(double width, double height){
+           super(width, height);
+        }
+
+    }
+
+
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.print(event.getSource());
@@ -234,16 +290,16 @@ public class GUIController implements Initializable {
 
         class MarkHand implements javafx.event.EventHandler<MouseEvent> {
 
-            Rectangle which;
+            RangeRect which;
 
-            MarkHand(Rectangle which) {
+            MarkHand(RangeRect which) {
                 this.which = which;
             }
 
             @Override
             public void handle(MouseEvent t) {
-                int row = GridPane.getRowIndex(which);
-                int col = GridPane.getColumnIndex(which);
+                int row = which.row;
+                int col = which.col;
 
                 String h;
                 if(row>col)
@@ -263,11 +319,12 @@ public class GUIController implements Initializable {
                 }
             }
         }
-        
+
+//        for (int row = 0; row < 13; row++)
 
         for (int row = 0; row < 13; row++) {
             for (int col = 0; col < 13; col++) {
-                final Rectangle rectangle = new Rectangle(30, 15);
+                final RangeRect rectangle = new RangeRect(25, 25);
 
                 String h = null;
                 if(row>col)
@@ -277,26 +334,44 @@ public class GUIController implements Initializable {
                 else
                     h =  intToRank(row)+ intToRank(row)+" ";
 
-                final Text handName = new Text(h);
+                final Text handName = new Text(h.substring(0, 2));
                 if(Input.getText().contains(h)){
                    
                     rectangle.setFill(Paint.valueOf("Red"));
                 }else
                     rectangle.setFill(Paint.valueOf("steelblue"));
                 rectangle.setStroke(Paint.valueOf("orange"));
-                
-                
-               
+
+
+
                 rectangle.setOnMouseClicked(new MarkHand(rectangle));
+                rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        ((RangeRect) event.getSource()).startFullDrag();
+                    }
+                });
+                rectangle.setOnMouseDragEntered(new MarkHand(rectangle));
                 handName.setOnMouseClicked(new MarkHand(rectangle));
-                handChart.add(rectangle, col, row);
-                handChart.add(handName, col, row);
+                rectangle.col = col;
+                rectangle.row = row;
+                rectangle.setX(col * 25);
+                rectangle.setY(25 + row * 25);
+                handName.setX(5 + col * 25);
+                handName.setDisable(true);
+
+                handName.setY(45 + row * 25);
+                Panel2.getChildren().add(handName);
+
+                Panel2.getChildren().add(rectangle);
+                handName.toFront();
+
             }
         }
-        borderPane.setCenter(handChart);
-        BorderPane.setAlignment(handChart, Pos.CENTER);
 
     }
+
+
 
     @FXML
     private void handlerConfirm(ActionEvent event) {
@@ -311,37 +386,32 @@ public class GUIController implements Initializable {
                 switch (pos) {
                     case "BB": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
-                        rangeBB.setText(str);
                         break;
                     }
                     case "SB": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
-                        rangeSB.setText(str);
                         break;
                     }
                     case "BU": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
-                        rangeBU.setText(str);
                         break;
                     }
                     case "CO": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
-                        rangeCO.setText(str);
                         break;
                     }
                     case "MP3": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
-                        rangeMP3.setText(str);
                         break;
                     }
                     case "MP2": {
                         actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
-                        rangeMP2.setText(str);
                         break;
                     }
                 }
             }
         }
+
         Panel2.setDisable(true);
         Panel2.setVisible(false);
         Panel1.setDisable(false);
