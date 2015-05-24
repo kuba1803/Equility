@@ -18,7 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Random;
@@ -34,6 +35,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -64,8 +66,7 @@ public class GUIController implements Initializable {
     Pane Panel3;
     @FXML
     TextArea Output;
-    @FXML
-    BorderPane borderPane;
+
 
     @FXML
     ImageView flop1;
@@ -77,8 +78,7 @@ public class GUIController implements Initializable {
     ImageView turn;
     @FXML
     ImageView river;
-    @FXML
-    ImageView test;
+
     @FXML
     GridPane cardTable;
 
@@ -94,12 +94,9 @@ public class GUIController implements Initializable {
     Text eqBB;
          @FXML
     Text eqMP2;
-
-
-    @FXML
-    GridPane handChart;
     @FXML
     Group equityDisplays;
+
 
 
     @FXML
@@ -423,5 +420,9 @@ public class GUIController implements Initializable {
         contr = MainApp.contr;
 
     }
+
+
+
+
 
 }

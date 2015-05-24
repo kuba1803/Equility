@@ -22,5 +22,10 @@ public class Card {
         this.rank = s.substring(0, 1);
         this.suit = s.substring(1);
     }
+
+    @Override
+    public String toString(){
+        return rank+suit;
+    }
     
 }

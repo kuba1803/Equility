@@ -28,12 +28,7 @@ public class MainApp extends Application {
 
 
 
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
 
-            }
-        });
         
         stage.setTitle("Projekt Equility");
         stage.setScene(scene);
