@@ -146,7 +146,7 @@
             </Pane>
             <Pane fx:id="Panel3" disable="true" layoutX="56.0" layoutY="46.0" prefHeight="358.0" prefWidth="728.0" visible="false">
                <children>
-                  <GridPane fx:id="cardTable" layoutY="-1.0" prefHeight="358.0" prefWidth="687.0">
+                  <GridPane fx:id="cardTable" layoutY="-1.0" prefHeight="371.0" prefWidth="687.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -169,6 +169,7 @@
                   <GridPane prefHeight="90.0" prefWidth="454.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

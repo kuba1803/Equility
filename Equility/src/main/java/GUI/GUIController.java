@@ -184,7 +184,7 @@ public class GUIController implements Initializable {
                 stage.setTitle("My New Stage Title");
                 stage.setScene(new Scene(root));
                 stage.show();
-
+                stage.setResizable(false);
                 //hide this current window (if this is whant you want
                 //((Node)(event.getSource())).getScene().getWindow().hide();
 
@@ -319,9 +319,11 @@ public class GUIController implements Initializable {
 
 //        for (int row = 0; row < 13; row++)
 
+        int rectSize = 25;
+
         for (int row = 0; row < 13; row++) {
             for (int col = 0; col < 13; col++) {
-                final RangeRect rectangle = new RangeRect(25, 25);
+                final RangeRect rectangle = new RangeRect(rectSize, rectSize);
 
                 String h = null;
                 if(row>col)
@@ -333,7 +335,7 @@ public class GUIController implements Initializable {
 
                 final Text handName = new Text(h.substring(0, 2));
                 if(Input.getText().contains(h)){
-                   
+
                     rectangle.setFill(Paint.valueOf("Red"));
                 }else
                     rectangle.setFill(Paint.valueOf("steelblue"));
@@ -352,12 +354,12 @@ public class GUIController implements Initializable {
                 handName.setOnMouseClicked(new MarkHand(rectangle));
                 rectangle.col = col;
                 rectangle.row = row;
-                rectangle.setX(col * 25);
-                rectangle.setY(25 + row * 25);
-                handName.setX(5 + col * 25);
+                rectangle.setX(col * rectSize);
+                rectangle.setY(rectSize + row * rectSize);
+                handName.setX(5 + col *rectSize);
                 handName.setDisable(true);
 
-                handName.setY(45 + row * 25);
+                handName.setY(45 + row * rectSize);
                 Panel2.getChildren().add(handName);
 
                 Panel2.getChildren().add(rectangle);
