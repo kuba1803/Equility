@@ -15,6 +15,21 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
+//Karol: kolejność kart w main
+//Karol: equi tylko przy ustawionych
+//Witek: działoao odklikiwanie
+//Witek: ogarnac barwene napisy
+//Kuba: textbox w main: range+ equity
+//Witek: wyeksponować table, zmiejszyć przyscki graczy,obramować stół
+//Kuba: Górny Pasek
+//Witek: wyswietlanie online rangu jest kapryśne
+//Kuba: ręczne wppisywanie
+//Witek: poprawić zczytywanie rangy
+//Kuba: poprawić menu w trainingu i w maine
+//Karol: wyświetlanie liczb w trainingu czyli po prostu ma dzialac caly training
+//Witek: tytuły okienek traningowych
+//Kuba: jar na windowsa zeby dzialal
+
 public class MainApp extends Application {
     
     public static MainControler contr;
