@@ -15,26 +15,12 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
             <Menu mnemonicParsing="false" text="Training">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#handleTrainingStart" text="Start" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleO_prog" text="O programie" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
         </menus>
       </MenuBar>
       <Pane prefHeight="498.0" prefWidth="800.0">
@@ -164,7 +150,7 @@
                   <Label layoutX="14.0" layoutY="23.0" text="K&#10;&amp;spades;" visible="false" />
                </children>
             </Pane>
-            <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="34.0" opacity="0.85" prefHeight="439.0" prefWidth="454.0" style="-fx-background-color: transparent; -fx-background-color: ;" visible="false">
+            <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="34.0" opacity="0.85" prefHeight="439.0" prefWidth="454.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <GridPane prefHeight="90.0" prefWidth="454.0">
                     <columnConstraints>
@@ -181,6 +167,7 @@
                         <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
                      </children>
                   </GridPane>
+                  <TextField fx:id="Input" alignment="BOTTOM_CENTER" layoutY="350.0" prefWidth="325.0" />
                </children>
             </Pane>
             <Pane fx:id="displayPane" prefHeight="200.0" prefWidth="200.0" />
