@@ -453,8 +453,9 @@ public class GUIController implements Initializable {
     private void handlerConfirm(ActionEvent event) {
         String str = Input.getText();
 
-        if (str.isEmpty()) {
+        if (str.isEmpty() || str == null) {
             actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d");
+            contr.setRange(actual.getText(), "");
         } else {
             String pos = actual.getText();
             if (contr.checkRange(str)) {
