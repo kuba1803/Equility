@@ -28,6 +28,7 @@ public class MainApp extends Application {
         stage.setTitle("Projekt Equility");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     /**

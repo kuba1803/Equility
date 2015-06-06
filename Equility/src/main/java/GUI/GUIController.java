@@ -201,8 +201,8 @@ public class GUIController implements Initializable {
             stage.setTitle("My New Training");
             stage.setScene(new Scene(root));
             stage.show();
-
-            //hide this current window (if this is whant you want
+            stage.setResizable(false);
+            //hide this curren t window (if this is whant you want
             //((Node)(event.getSource())).getScene().getWindow().hide();
 
         } catch (IOException e) {
