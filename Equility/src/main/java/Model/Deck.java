@@ -9,18 +9,19 @@ import java.util.*;
 
 
 public class Deck {
-    static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    static String[] suits = {"c", "d", "h", "s"};
+    final static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    final static String[] suits = {"c", "d", "h", "s"};
     List<Card> cards;
     public Deck(){
-        cards = new ArrayList<>();
+        cards = new ArrayList<Card>();
         for(String s: suits)
             for(String r: ranks)
                 cards.add(new Card(r,s));
     }
     public void shuffle(){
-        long seed = System.nanoTime();
-        Collections.shuffle(cards, new Random(seed));
+        //long seed = System.nanoTime();
+        //Collections.shuffle(cards, new Random(seed));
+        Collections.shuffle(cards);
     }
     
     public void removeHand(String h){
@@ -29,7 +30,7 @@ public class Deck {
     }
     
     public Card drawACard(){
-        return cards.remove(0);
+        return cards.remove(cards.size() - 1);
     }
     
     @Override

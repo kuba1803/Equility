@@ -146,11 +146,6 @@
                 </Pane>
                 <Pane fx:id="Panel3" disable="true" layoutX="27" layoutY="100" prefHeight="358.0" prefWidth="728.0" visible="false">
                     <children>
-                        <!--
-                             trzeba zmienic rozmiar karty tak aby wszystko sie miescilo na boardzie
-                             jak rozmiar karty to A x B, to trzeba tu nizej ustawic prefHeight="4 * A" prefWidth="13 * B"
-                             a wyzej trzeba to tak ustwic, zeby bylo ladnie wycentrowane
-                        -->
                         <GridPane fx:id="cardTable" alignment="CENTER" prefHeight="304" prefWidth="741.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />

@@ -53,7 +53,7 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="371.0" prefWidth="309.0" VBox.vgrow="ALWAYS">
       <children>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#62d78b2b" height="232.0" layoutX="8.0" layoutY="8.0" stroke="TRANSPARENT" strokeType="INSIDE" width="621.0" />
-            <Text layoutX="28.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Villan Range" wrappingWidth="135.93408203125">
+            <Text layoutX="28.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Villain Range" wrappingWidth="135.93408203125">
                <font>
                   <Font size="21.0" />
                </font>

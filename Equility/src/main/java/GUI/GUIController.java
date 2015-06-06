@@ -312,8 +312,6 @@ public class GUIController implements Initializable {
 
                     @Override
                     public void handle(MouseEvent event) {
-                        //System.out.println("cardClicked");
-
                         if (clickedBoard.get(key) == null) {
                             ((ImageView) clickTableCard.getSource()).setImage(((ImageView) event.getSource()).getImage());
                             clickedBoard.put(key, ((ImageView) clickTableCard.getSource()));

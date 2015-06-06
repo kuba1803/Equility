@@ -34,21 +34,60 @@ public class TrainingController implements Initializable{
     private void handleNext(ActionEvent event) {
         Deck deck = new Deck();
         deck.shuffle();
-        Card card = deck.drawACard();
-        Image image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        hero1.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        hero2.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop1.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop2.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop3.setImage(image);
+        Card card;
+        Image image;
+
+        boolean isSet = false;
+
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                hero1.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                hero2.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop1.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop2.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop3.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
     }
 
 
@@ -179,21 +218,59 @@ public class TrainingController implements Initializable{
         System.out.printf("initializing");
         Deck deck = new Deck();
         deck.shuffle();
-        Card card = deck.drawACard();
-        Image image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        hero1.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        hero2.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop1.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop2.setImage(image);
-        card = deck.drawACard();
-        image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-        flop3.setImage(image);
+        Card card;
+        Image image;
 
+        boolean isSet = false;
+
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                hero1.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                hero2.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop1.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop2.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
+        isSet = false;
+        while(!isSet) {
+            try {
+                card = deck.drawACard();
+                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
+                flop3.setImage(image);
+                isSet = true;
+            } catch (Exception e) {
+            }
+        }
     }
 }
