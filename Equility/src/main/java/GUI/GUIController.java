@@ -335,7 +335,8 @@ public class GUIController implements Initializable {
                         Panel1.setDisable(false);
                     }
                 });
-
+                v.setFitWidth(57);
+                v.setFitHeight(76);
                 cardTable.add(v, 12 - j, i);
             }
         }
@@ -344,11 +345,9 @@ public class GUIController implements Initializable {
     class RangeRect extends Rectangle {
         int row;
         int col;
-
         public RangeRect(double width, double height) {
             super(width, height);
         }
-
     }
 
     Map<String, String> ranges = new HashMap<String, String>();
