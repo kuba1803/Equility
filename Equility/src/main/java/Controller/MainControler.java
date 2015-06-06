@@ -5,13 +5,17 @@
  */
 package Controller;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  *
  * @author kuba1_000
  */
 public interface MainControler {
     public String getRange(String pos);
-    public String getEquity();
+    public HashMap<String, Double> getEquity(HashMap<String, String> ranges, HashSet<String> board);
     public void setRange(String pos,String range);
     public void Clear();
     public boolean checkRange(String range);
@@ -21,5 +25,4 @@ public interface MainControler {
     public void setTurn(String turn);
     public String getRiver();
     public void SetRiver(String river);
-
 }

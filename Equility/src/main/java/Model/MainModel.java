@@ -6,8 +6,10 @@
 package Model;
 import Controller.MainControler;
 import GUI.GUIController;
-import java.util.ArrayList;
-import java.util.Iterator;
+import javafx.scene.image.ImageView;
+
+import java.util.*;
+
 /**
  *
  * @author kuba1_000
@@ -15,6 +17,7 @@ import java.util.Iterator;
 public class MainModel implements MainControler {
 
     private ArrayList<Position> positions = new ArrayList<>();
+
     public MainModel()
     {
         positions.add(new Position("BB"));
@@ -39,11 +42,8 @@ public class MainModel implements MainControler {
     }
 
     @Override
-    public String getEquity() {
-        Deck d = new Deck();
-        d.shuffle();
-        System.out.println(d);
-        return "...";
+    public HashMap<String, Double> getEquity(HashMap<String, String> ranges, HashSet<String> board) {
+        return CountingOdds.count(ranges, board);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class MainModel implements MainControler {
             Position p = iter.next();
             if(p.GetId().equals(pos))
             {
-                 p.SetRange(range);
+                p.SetRange(range);
             }
         }
     }
@@ -103,5 +103,5 @@ public class MainModel implements MainControler {
     public void SetRiver(String river) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

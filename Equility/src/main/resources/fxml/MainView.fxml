@@ -12,184 +12,202 @@
 <?import javafx.scene.layout.*?>
 
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
-   <children>
-      <MenuBar>
-        <menus>
-            <Menu mnemonicParsing="false" text="Training">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#handleTrainingStart" text="Start" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleO_prog" text="O programie" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <Pane prefHeight="498.0" prefWidth="800.0">
-         <children>
-            <Pane fx:id="Panel1" layoutX="86.0" layoutY="68.0" prefHeight="336.0" prefWidth="635.0">
-               <children>
-                  <Rectangle arcHeight="400.0" arcWidth="400.0" height="414.0" layoutX="-76.0" layoutY="-44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="776.0">
-                     <fill>
-                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#26da47" />
-                              <Stop color="#26da47" offset="0.007407407407407408" />
-                              <Stop color="#4e7253" offset="0.9962962962962963" />
-                              <Stop color="#4e7253" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Rectangle>
-                  <Label fx:id="MP3" alignment="CENTER" layoutX="3.0" layoutY="34.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="flop3" fitHeight="76.0" fitWidth="46.0" layoutX="243.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@revers.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="turn" fitHeight="76.0" fitWidth="46.0" layoutX="327.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@revers.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="flop2" fitHeight="76.0" fitWidth="46.0" layoutX="197.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@revers.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="BB" alignment="CENTER" layoutX="244.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="MP2" alignment="CENTER" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="SB" alignment="CENTER" layoutX="494.0" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="CO" alignment="CENTER" layoutX="257.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="BU" alignment="CENTER" layoutX="494.0" layoutY="38.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
-                     <font>
-                        <Font name="System Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="river" fitHeight="76.0" fitWidth="46.0" layoutX="409.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@revers.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="flop1" fitHeight="76.0" fitWidth="46.0" layoutX="151.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@revers.png" />
-                     </image>
-                  </ImageView>
-                  <Group fx:id="equityDisplays">
-                     <children>
-                        <Text fx:id="eqCO" layoutX="342.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="eqBB" layoutX="329.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="eqSB" layoutX="578.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="eqMP3" layoutX="100.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" wrappingWidth="145.5087890625">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="eqMP2" layoutX="94.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="eqBU" layoutX="577.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text">
-                           <font>
-                              <Font size="31.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Group>
-               </children>
-            </Pane>
-            <Pane fx:id="Panel3" disable="true" layoutX="56.0" layoutY="46.0" prefHeight="358.0" prefWidth="728.0" visible="false">
-               <children>
-                  <GridPane fx:id="cardTable" layoutY="-1.0" prefHeight="371.0" prefWidth="687.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                  </GridPane>
-               </children>
-            </Pane>
-            <Pane layoutX="190.0" layoutY="145.0" opacity="0.8" prefHeight="200.0" prefWidth="426.0" style="-fx-background-color: #3574c9;" visible="false">
-               <children>
-                  <Label layoutX="14.0" layoutY="23.0" text="K&#10;&amp;spades;" visible="false" />
-               </children>
-            </Pane>
-            <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="34.0" opacity="0.85" prefHeight="439.0" prefWidth="454.0" style="-fx-background-color: transparent;" visible="false">
-               <children>
-                  <GridPane prefHeight="90.0" prefWidth="454.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="325.0" text="OK" GridPane.columnSpan="2" />
-                        <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
-                     </children>
-                  </GridPane>
-                  <TextField fx:id="Input" alignment="BOTTOM_CENTER" layoutY="350.0" prefWidth="325.0" />
-               </children>
-            </Pane>
-            <Pane fx:id="displayPane" prefHeight="200.0" prefWidth="200.0" />
-         </children></Pane>
-      <TilePane prefHeight="17.0" prefWidth="800.0">
-         <children>
-            <HBox prefHeight="0.0" prefWidth="800.0">
-               <children>
-                  <Button id="Clear" mnemonicParsing="false" onAction="#handleButtonClear" prefHeight="100.0" prefWidth="200.0" text="Wyczyść">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <TextArea fx:id="Output" editable="false" prefHeight="20.0" prefWidth="400.0" />
-                  <Button id="Compute" mnemonicParsing="false" onAction="#handleButtonCompute" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </TilePane>
-   </children>
+    <children>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Training">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleTrainingStart" text="Start" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane prefHeight="498.0" prefWidth="800.0">
+            <children>
+                <Pane fx:id="Panel1" layoutX="86.0" layoutY="68.0" prefHeight="336.0" prefWidth="635.0">
+                    <children>
+                        <Rectangle arcHeight="400.0" arcWidth="400.0" height="414.0" layoutX="-76.0" layoutY="-44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="776.0">
+                            <fill>
+                                <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                    <stops>
+                                        <Stop color="#26da47" />
+                                        <Stop color="#26da47" offset="0.007407407407407408" />
+                                        <Stop color="#4e7253" offset="0.9962962962962963" />
+                                        <Stop color="#4e7253" offset="1.0" />
+                                    </stops>
+                                </RadialGradient>
+                            </fill>
+                        </Rectangle>
+                        <Label fx:id="MP3" alignment="CENTER" layoutX="3.0" layoutY="34.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="flop3" fitHeight="76.0" fitWidth="46.0" layoutX="243.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@revers.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="turn" fitHeight="76.0" fitWidth="46.0" layoutX="327.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@revers.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="flop2" fitHeight="76.0" fitWidth="46.0" layoutX="197.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@revers.png" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="BB" alignment="CENTER" layoutX="244.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="MP2" alignment="CENTER" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="SB" alignment="CENTER" layoutX="494.0" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="CO" alignment="CENTER" layoutX="257.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="BU" alignment="CENTER" layoutX="494.0" layoutY="38.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <ImageView fx:id="river" fitHeight="76.0" fitWidth="46.0" layoutX="409.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@revers.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fx:id="flop1" fitHeight="76.0" fitWidth="46.0" layoutX="151.0" layoutY="125.0" onMouseClicked="#handleTableChoice" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@revers.png" />
+                            </image>
+                        </ImageView>
+                        <Group fx:id="equityDisplays">
+                            <children>
+                                <Text fx:id="eqCO" layoutX="342.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="eqBB" layoutX="329.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="eqSB" layoutX="578.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="eqMP3" layoutX="100.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false" wrappingWidth="145.5087890625">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="eqMP2" layoutX="94.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                                <Text fx:id="eqBU" layoutX="577.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                    <font>
+                                        <Font size="31.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Group>
+                    </children>
+                </Pane>
+                <Pane fx:id="Panel3" disable="true" layoutX="10" layoutY="46.0" prefHeight="358.0" prefWidth="728.0" visible="false">
+                    <children>
+                        <!--
+                             trzeba zmienic rozmiar karty tak aby wszystko sie miescilo na boardzie
+                             jak rozmiar karty to A x B, to trzeba tu nizej ustawic prefHeight="4 * A" prefWidth="13 * B"
+                             a wyzej trzeba to tak ustwic, zeby bylo ladnie wycentrowane
+                        -->
+                        <GridPane fx:id="cardTable" layoutY="-1.0" prefHeight="384.0" prefWidth="715.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                        </GridPane>
+
+                    </children>
+                </Pane>
+                <Pane layoutX="190.0" layoutY="145.0" opacity="0.8" prefHeight="200.0" prefWidth="426.0" style="-fx-background-color: #3574c9;" visible="false">
+                    <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="K&#10;&amp;spades;" visible="false" />
+                    </children>
+                </Pane>
+                <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="34.0" opacity="0.85" prefHeight="439.0" prefWidth="454.0" style="-fx-background-color: transparent;" visible="false">
+                    <children>
+                        <GridPane prefHeight="90.0" prefWidth="454.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="325.0" text="OK" GridPane.columnSpan="2" />
+                                <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
+                            </children>
+                        </GridPane>
+                    </children>
+                </Pane>
+                <Pane fx:id="displayPane" prefHeight="200.0" prefWidth="200.0" />
+            </children></Pane>
+        <TilePane prefHeight="17.0" prefWidth="800.0">
+            <children>
+                <HBox prefHeight="0.0" prefWidth="800.0">
+                    <children>
+                        <Button id="Clear" mnemonicParsing="false" onAction="#handleButtonClear" prefHeight="100.0" prefWidth="200.0" text="Wyczyść">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Button>
+                        <TextArea fx:id="Output" editable="false" prefHeight="20.0" prefWidth="400.0" />
+                        <Button id="Compute" mnemonicParsing="false" onAction="#handleButtonCompute" prefHeight="100.0" prefWidth="200.0" text="Oblicz">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </TilePane>
+    </children>
 </VBox>

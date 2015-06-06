@@ -16,5 +16,10 @@ public class Hand {
         c1 = new Card(h.substring(0, 2));
         c2 = new Card(h.substring(2, 4));
     }
-    
+
+    @Override
+    public String toString() {
+        return c1.toString() + " " + c2.toString();
+    }
+
 }
