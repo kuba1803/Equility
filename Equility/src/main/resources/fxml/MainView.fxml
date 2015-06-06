@@ -177,7 +177,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="325.0" text="OK" GridPane.columnSpan="2" />
+                                <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="390" text="OK" GridPane.columnSpan="2" />
                                 <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
                             </children>
                         </GridPane>

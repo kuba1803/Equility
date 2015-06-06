@@ -44,7 +44,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 
 /**
@@ -151,9 +151,9 @@ public class GUIController implements Initializable {
 
                 String h = null;
                 if (row > col)
-                    h = intToRank(col) + intToRank(row) + "s";
+                    h = intToRank(col) + intToRank(row) + "o";
                 else if (row < col)
-                    h = intToRank(row) + intToRank(col) + "o";
+                    h = intToRank(row) + intToRank(col) + "s";
                 else
                     h = intToRank(row) + intToRank(row);
 
@@ -161,9 +161,9 @@ public class GUIController implements Initializable {
                 if (tempRange.contains(h)) {
                     rectangle.setFill(Paint.valueOf("Red"));
                 } else {
-                    rectangle.setFill(Paint.valueOf("steelblue"));
+                    rectangle.setFill(Paint.valueOf(getColorChoose(row, col)));
                 }
-                rectangle.setStroke(Paint.valueOf("steelblue"));
+                rectangle.setStroke(Paint.valueOf("grey"));
 
 
                 rectangle.col = col;
@@ -350,6 +350,12 @@ public class GUIController implements Initializable {
 
     Map<String, String> ranges = new HashMap<String, String>();
 
+    String getColorChoose(int row, int col) {
+        if(row == col) return "LIGHTGREEN";
+        if(row < col) return "LIGHTYELLOW";
+        return "LIGHTBLUE";
+    }
+
     @FXML
     private void handleLabelPosition(MouseEvent event) {
         System.out.println(event.getSource());
@@ -376,17 +382,17 @@ public class GUIController implements Initializable {
 
                 String h;
                 if (row > col) {
-                    h = intToRank(col) + intToRank(row) + "s ";
+                    h = intToRank(col) + intToRank(row) + "o ";
                 } else if (row < col) {
-                    h = intToRank(row) + intToRank(col) + "o ";
+                    h = intToRank(row) + intToRank(col) + "s ";
                 } else {
                     h = intToRank(row) + intToRank(row) + " ";
                 }
                 if (which.getFill().equals(Color.RED)) {
-                    System.out.println("hello " + h);
+                    //System.out.println("hello " + h);
                     String oldText = Input.getText();
                     Input.setText(oldText.replaceAll(h, ""));
-                    which.setFill(Color.STEELBLUE);
+                    which.setFill(Color.valueOf(getColorChoose(row, col)));
                 } else {
                     Input.appendText(h);
                     which.setFill(Color.RED);
@@ -394,27 +400,31 @@ public class GUIController implements Initializable {
             }
         }
 
+        int sizeOfRectangle = 30;
         for (int row = 0; row < 13; row++) {
             for (int col = 0; col < 13; col++) {
-                final RangeRect rectangle = new RangeRect(25, 25);
+                final RangeRect rectangle = new RangeRect(sizeOfRectangle, sizeOfRectangle);
 
                 String h;
                 if (row > col) {
-                    h = intToRank(col) + intToRank(row) + "s ";
+                    h = intToRank(col) + intToRank(row) + "o";
                 } else if (row < col) {
-                    h = intToRank(row) + intToRank(col) + "o ";
+                    h = intToRank(row) + intToRank(col) + "s";
                 } else {
-                    h = intToRank(row) + intToRank(row) + " ";
+                    h = intToRank(row) + intToRank(row);
                 }
 
-                final Text handName = new Text(h.substring(0, 2));
+                final Text handName = new Text(h);
+                handName.setFont(javafx.scene.text.Font.font(11));
+
+                handName.setTextAlignment(TextAlignment.valueOf("JUSTIFY"));
 
                 if (Input.getText().contains(h)) {
                     rectangle.setFill(Paint.valueOf("Red"));
                 } else {
-                    rectangle.setFill(Paint.valueOf("steelblue"));
+                    rectangle.setFill(Paint.valueOf(getColorChoose(row, col)));
                 }
-                rectangle.setStroke(Paint.valueOf("orange"));
+                rectangle.setStroke(Paint.valueOf("grey"));
 
 
                 rectangle.setOnMouseClicked(new MarkHand(rectangle));
@@ -428,12 +438,12 @@ public class GUIController implements Initializable {
                 handName.setOnMouseClicked(new MarkHand(rectangle));
                 rectangle.col = col;
                 rectangle.row = row;
-                rectangle.setX(col * 25);
-                rectangle.setY(25 + row * 25);
-                handName.setX(5 + col * 25);
+                rectangle.setX(col * sizeOfRectangle);
+                rectangle.setY(sizeOfRectangle + row * sizeOfRectangle);
+                handName.setX(5 + col * sizeOfRectangle);
                 handName.setDisable(true);
 
-                handName.setY(45 + row * 25);
+                handName.setY(45 + row * sizeOfRectangle);
                 Panel2.getChildren().add(handName);
 
                 Panel2.getChildren().add(rectangle);
