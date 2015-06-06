@@ -304,9 +304,11 @@ public class GUIController implements Initializable {
                     h = intToRank(row) + intToRank(row) + " ";
                 }
                 if (which.getFill().equals(Color.RED)) {
-                    System.out.println("hello " + h);
+                    System.out.println("removing " + h);
                     String oldText = Input.getText();
+                    System.out.println(oldText);
                     Input.setText(oldText.replaceAll(h, ""));
+                    System.out.println(Input.getText());
                     which.setFill(Color.STEELBLUE);
                 } else {
                     Input.appendText(h);

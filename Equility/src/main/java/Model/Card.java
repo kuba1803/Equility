@@ -10,8 +10,8 @@ package Model;
  * @author kuba1_000
  */
 public class Card {
-    String rank;
-    String suit;
+    public String rank;
+    public String suit;
     
     public Card(String rank, String suit){
         this.suit = suit;
