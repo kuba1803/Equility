@@ -16,6 +16,10 @@ public class Hand {
         c1 = new Card(h.substring(0, 2));
         c2 = new Card(h.substring(2, 4));
     }
+    public Hand(Card a, Card b){
+        c1 = a;
+        c2 = b;
+    }
 
     @Override
     public String toString() {
