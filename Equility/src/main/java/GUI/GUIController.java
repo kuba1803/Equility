@@ -9,13 +9,11 @@ import Controller.MainControler;
 import equility.MainApp;
 
 import java.awt.*;
-import java.awt.MenuItem;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -48,7 +46,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * @author kuba1_000
@@ -135,7 +132,7 @@ public class GUIController implements Initializable {
     Pane displayPane;
 
     /*
-        obsuguje najechanie myszka na gracza
+    obsuguje najechanie myszka na goscia
      */
     @FXML
     private void handleMouseEntered(MouseEvent event) {
@@ -180,6 +177,7 @@ public class GUIController implements Initializable {
             }
         }
 
+
         displayPane.setMouseTransparent(true);
         displayPane.toFront();
         displayPane.setLayoutX(Math.min(((Label) event.getSource()).getLayoutX(), Panel1.getWidth() - (13 * 25 + 50) / scale));
@@ -192,7 +190,6 @@ public class GUIController implements Initializable {
         displayPane.setVisible(false);
     }
 
-    ArrayList<String> listOfOpenedTrainings = new ArrayList<>();
 
     @FXML
     public void handleTrainingStart(ActionEvent event) {
@@ -200,27 +197,13 @@ public class GUIController implements Initializable {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/TrainingView.fxml"));
-            final Stage stage = new Stage();
-
-            for(int i = 1; i < 1000; i++) {
-                String goodName = "Training #" + i;
-                if(!listOfOpenedTrainings.contains(goodName)) {
-                    stage.setTitle(goodName);
-                    listOfOpenedTrainings.add(goodName);
-                    break;
-                }
-            }
-
+            Stage stage = new Stage();
+            stage.setTitle("My New Training");
             stage.setScene(new Scene(root));
-
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                public void handle(WindowEvent we) {
-                    System.out.println("closing" + stage.getTitle());
-                    listOfOpenedTrainings.remove(stage.getTitle());
-                }
-            });
-
             stage.show();
+
+            //hide this current window (if this is whant you want
+            //((Node)(event.getSource())).getScene().getWindow().hide();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -369,7 +352,7 @@ public class GUIController implements Initializable {
 
     String getColorChoose(int row, int col) {
         if(row == col) return "LIGHTGREEN";
-        if(row < col) return "LIGHTGOLDENRODYELLOW";
+        if(row < col) return "LIGHTYELLOW";
         return "LIGHTBLUE";
     }
 
@@ -434,6 +417,7 @@ public class GUIController implements Initializable {
                 final Text handName = new Text(h);
                 handName.setFont(javafx.scene.text.Font.font(11));
 
+                handName.setTextAlignment(TextAlignment.valueOf("JUSTIFY"));
 
                 if (Input.getText().contains(h)) {
                     rectangle.setFill(Paint.valueOf("Red"));
@@ -441,6 +425,7 @@ public class GUIController implements Initializable {
                     rectangle.setFill(Paint.valueOf(getColorChoose(row, col)));
                 }
                 rectangle.setStroke(Paint.valueOf("grey"));
+
 
                 rectangle.setOnMouseClicked(new MarkHand(rectangle));
                 rectangle.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -459,7 +444,6 @@ public class GUIController implements Initializable {
                 handName.setDisable(true);
 
                 handName.setY(45 + row * sizeOfRectangle);
-                handName.setTextAlignment(TextAlignment.valueOf("CENTER"));
                 Panel2.getChildren().add(handName);
 
                 Panel2.getChildren().add(rectangle);
@@ -486,27 +470,27 @@ public class GUIController implements Initializable {
                 contr.setRange(pos, str);
                 switch (pos) {
                     case "BB": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: LIGHTSKYBLUE");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
                         break;
                     }
                     case "SB": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: bisque");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #ff0000");
                         break;
                     }
                     case "BU": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: LIGHTSEAGREEN");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
                         break;
                     }
                     case "CO": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: fuchsia");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #5fff3b");
                         break;
                     }
                     case "MP3": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: gold");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
                         break;
                     }
                     case "MP2": {
-                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: LIGHTSALMON");
+                        actual.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #e1a81f");
                         break;
                     }
                 }
@@ -518,16 +502,6 @@ public class GUIController implements Initializable {
         Panel1.setDisable(false);
         Input.clear();
     }
-
-    @FXML
-    private void closeWindowButtonAction(ActionEvent event) {
-        ((Stage)Panel1.getScene().getWindow()).close();
-    }
-    @FXML
-    private void closePlatformButtonAction(ActionEvent event) {
-        Platform.exit();
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,10 @@ import java.util.regex.Pattern;
 public class TrainingController implements Initializable{
     @FXML
     ImageView hero1, hero2, flop1, flop2, flop3;
+
+
+    @FXML
+    Slider equitySlider;
 
     String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
     String[] suits = {"c", "d", "h", "s"};
@@ -205,12 +210,13 @@ public class TrainingController implements Initializable{
         String delims = "[, ]+";
         String[] tokens = input.getText().split(delims);
         for(String e: tokens){
-            if(!isProperRange(e)) {
+            if(!isProperRange(e)){
                 checkButton.setDisable(true);
                 return;
             }
             hands.addAll(rangeToHands(e));
         }
+        System.out.println(equitySlider.getValue()); //TU JEST TWÓJ SLIDER ;)
         System.out.println(hands);
     }
 
