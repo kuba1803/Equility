@@ -2,6 +2,7 @@ package GUI;
 
 import Model.Card;
 import Model.Deck;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -272,5 +274,15 @@ public class TrainingController implements Initializable{
             } catch (Exception e) {
             }
         }
+    }
+
+    @FXML
+    private void closeWindowButtonAction(ActionEvent event) {
+        ((Stage)hero1.getScene().getWindow()).close();
+    }
+
+    @FXML
+    private void closePlatformButtonAction(ActionEvent event) {
+        Platform.exit();
     }
 }

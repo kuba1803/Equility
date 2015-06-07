@@ -17,14 +17,13 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeWindowButtonAction"  text="Quit"/>
                     </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="closeAll" mnemonicParsing="false" onAction="#closePlatformButtonAction"  text="Quit all"/>
                     </items>
                 </Menu>
+                <!-- <Menu mnemonicParsing="false" text="Edit"> <items> <MenuItem mnemonicParsing="false" text="Delete" /> </items> </Menu> -->
                 <Menu mnemonicParsing="false" text="Training">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleTrainingStart" text="Start" />
@@ -53,7 +52,7 @@
                                 </RadialGradient>
                             </fill>
                         </Rectangle>
-                        <Label fx:id="MP3" alignment="CENTER" layoutX="3.0" layoutY="34.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
+                        <Label fx:id="MP3" alignment="CENTER" layoutX="3.0" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
@@ -73,27 +72,27 @@
                                 <Image url="@revers.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="BB" alignment="CENTER" layoutX="244.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
+                        <Label fx:id="BB" alignment="CENTER" layoutX="265.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="MP2" alignment="CENTER" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
+                        <Label fx:id="MP2" alignment="CENTER" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="SB" alignment="CENTER" layoutX="494.0" layoutY="222.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
+                        <Label fx:id="SB" alignment="CENTER" layoutX="510.0" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="CO" alignment="CENTER" layoutX="257.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
+                        <Label fx:id="CO" alignment="CENTER" layoutX="265.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="BU" alignment="CENTER" layoutX="494.0" layoutY="38.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
+                        <Label fx:id="BU" alignment="CENTER" layoutX="510.0" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
@@ -110,32 +109,32 @@
                         </ImageView>
                         <Group fx:id="equityDisplays">
                             <children>
-                                <Text fx:id="eqCO" layoutX="342.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqCO" layoutX="350.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqBB" layoutX="329.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqBB" layoutX="350.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqSB" layoutX="578.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqSB" layoutX="588.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqMP3" layoutX="100.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false" wrappingWidth="145.5087890625">
+                                <Text fx:id="eqMP3" layoutX="100.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false" wrappingWidth="145.5087890625">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqMP2" layoutX="94.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqMP2" layoutX="94.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqBU" layoutX="577.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqBU" layoutX="588.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
