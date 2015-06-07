@@ -55,14 +55,15 @@ public class Pokerhand {
 
         for(int i = 1; i < myCards.size() - 3; i++) {
             if(myCards.get(i).rank.equals("5") &&
-                    myCards.get(i).prank == myCards.get(i + 3).prank - 3) {
+                    myCards.get(i).prank == myCards.get(i + 3).prank - 3 &&
+                    myCards.get(i).suit.equals(myCards.get(i + 3).suit)) {
                 if(myCards.contains(new Card("A", myCards.get(i).suit))) {
                     for (int j = 0; j < 4; j++) {
                         Collections.swap(myCards, j, i + j);
                     }
+                    myCards.set(4, new Card("A", myCards.get(0).suit));
+                    return true;
                 }
-                myCards.set(4, new Card("A", myCards.get(i).suit));
-                return true;
             }
         }
 
@@ -90,7 +91,7 @@ public class Pokerhand {
                 for (int j = 0; j < 3; j++) {
                     Collections.swap(myCards, j, i + j);
                 }
-                for(int k = i + 3; k < 6; k++) {
+                for(int k = 3; k < 6; k++) {
                     if (myCards.get(k).rank.equals(myCards.get(k + 1).rank)) {
                         for (int l = 0; l < 2; l++) {
                             Collections.swap(myCards, 3 + l, k + l);
@@ -177,7 +178,7 @@ public class Pokerhand {
                     Collections.swap(myCards, j, i + j);
                 }
 
-                for(int k = i + 2; k < 6; k++) {
+                for(int k = 2; k < 6; k++) {
                     if (myCards.get(k).rank.equals(myCards.get(k + 1).rank)) {
                         for (int l = 0; l < 2; l++) {
                             Collections.swap(myCards, 2 + l, k + l);

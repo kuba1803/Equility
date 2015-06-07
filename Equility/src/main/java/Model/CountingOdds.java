@@ -11,8 +11,7 @@ public class CountingOdds {
     final static String[] suits = {"s", "h", "d", "c"};
     static int numberOfDrawings = 20000;
     static int actualNumberOfDrawings;
-
-    static Set<Card> avaliableCards;
+    static HashSet<Card> avaliableCards;
 
     static int factorial(int a) {
         int res = 1;
@@ -46,7 +45,7 @@ public class CountingOdds {
 
 
         for (int i = 0; i < ranges.size(); i++) {
-            chosenHands.add(ranges.get(i).get((generator.nextInt((int) ranges.get(i).size()))));
+            chosenHands.add(ranges.get(i).get((generator.nextInt(ranges.get(i).size()))));
         }
 
 
@@ -164,6 +163,7 @@ public class CountingOdds {
         int points[] = new int[n];
         HashMap result = new HashMap<String, Double>();
         ArrayList<Card> cardsOnBoard = new ArrayList<Card>();
+        numberOfDrawings = 20000;
         actualNumberOfDrawings = numberOfDrawings;
 
         for (String s : board) {
