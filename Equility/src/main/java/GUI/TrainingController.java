@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by nibylev on 06.06.15.
  */
@@ -44,17 +46,23 @@ public class TrainingController implements Initializable{
     @FXML
     AnchorPane anchor;
 
+    private ArrayList<Card> heroCards, flopCards;
+    private ArrayList<Double> absoluteDifferencesInSession = new ArrayList<>();
+    private ArrayList<Double> relativeDifferencesInSession = new ArrayList<>();
+
     final static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
     final static String[] suits = {"c", "d", "h", "s"};
 
-    @FXML
-    private void handleNext(ActionEvent event) {
+    void getNewCardsToTrainOn() {
+        heroCards = new ArrayList<>();
+        flopCards = new ArrayList<>();
         Deck deck = new Deck();
         deck.shuffle();
         Card card;
         Image image;
+        boolean isSet;
 
-        boolean isSet = false;
+        isSet = false;
 
         while(!isSet) {
             try {
@@ -62,6 +70,7 @@ public class TrainingController implements Initializable{
                 image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
                 hero1.setImage(image);
                 isSet = true;
+                heroCards.add(card);
             } catch (Exception e) {
             }
         }
@@ -72,6 +81,7 @@ public class TrainingController implements Initializable{
                 image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
                 hero2.setImage(image);
                 isSet = true;
+                heroCards.add(card);
             } catch (Exception e) {
             }
         }
@@ -82,6 +92,7 @@ public class TrainingController implements Initializable{
                 image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
                 flop1.setImage(image);
                 isSet = true;
+                flopCards.add(card);
             } catch (Exception e) {
             }
         }
@@ -92,6 +103,7 @@ public class TrainingController implements Initializable{
                 image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
                 flop2.setImage(image);
                 isSet = true;
+                flopCards.add(card);
             } catch (Exception e) {
             }
         }
@@ -102,20 +114,42 @@ public class TrainingController implements Initializable{
                 image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
                 flop3.setImage(image);
                 isSet = true;
+                flopCards.add(card);
             } catch (Exception e) {
             }
         }
+
+        for (Node n : anchor.getChildren()) {
+            if (n.getId() != null && n.getId().equals("odds")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText("");
+            }
+            if (n.getId() != null && n.getId().equals("absdiff")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText("");
+            }
+            if (n.getId() != null && n.getId().equals("reldiff")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText("");
+            }
+        }
+
+    }
+
+    @FXML
+    private void handleNext(ActionEvent event) {
+        getNewCardsToTrainOn();
     }
 
 
     //(A[23456789TJQKA]|K[23456789TJQK]|Q[23456789TJQ]|J[23456789TJ]|T[23456789T]|9[23456789]|8[2345678]|7[234567]|6[[23456]|5[2345]|4[234]|3[23]|2)
 
     boolean isPlusRange (String hand){
-        return Pattern.matches("((A[23456789TJQK]|K[23456789TJQ]|Q[23456789TJ]|J[23456789T]|T[23456789]|9[2345678]|8[234567]|7[23456]|6[2345]|5[234]|4[23]|3[2])([so]\\+?))" , hand);
+        return Pattern.matches("((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])([so]\\+))" , hand);
     }
 
     boolean isPlainHand(String hand){
-        return Pattern.matches("((A[23456789TJQK]|K[23456789TJQ]|Q[23456789TJ]|J[23456789T]|T[23456789]|9[2345678]|8[234567]|7[23456]|6[2345]|5[234]|4[23]|3[2])[so])|(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK|AA)", hand);
+        return Pattern.matches("((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so])|(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK|AA)", hand);
     }
 
     int toInt(String r){
@@ -135,9 +169,12 @@ public class TrainingController implements Initializable{
 
     }
     boolean isNormalRange(String hand){
-        boolean pre = Pattern.matches("((A[23456789TJQK]|K[23456789TJQ]|Q[23456789TJ]|J[23456789T]|T[23456789]|9[2345678]|8[234567]|7[23456]|6[2345]|5[234]|4[23]|3[2])[so])-((A[23456789TJQK]|K[23456789TJQ]|Q[23456789TJ]|J[23456789T]|T[23456789]|9[2345678]|8[234567]|7[23456]|6[2345]|5[234]|4[23]|3[2])[so])", hand);
+        boolean pre = Pattern.matches("(((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so])-((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so]))", hand);
         if(!pre)
             return false;
+
+        System.out.println("isNormalRange: " + hand);
+
         if(hand.charAt(0)!=hand.charAt(4))
             return false;
         if(hand.charAt(2)!=hand.charAt(6))
@@ -148,7 +185,7 @@ public class TrainingController implements Initializable{
     }
 
     boolean isPairPlus(String hand){
-        return Pattern.matches("(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK)\\+?", hand);
+        return Pattern.matches("(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK)\\+", hand);
 
     }
 
@@ -208,15 +245,11 @@ public class TrainingController implements Initializable{
 
 
     @FXML
-    public void draggedSlider() {
-        System.out.println(equitySlider.getValue());
-    }
-
-
-    @FXML
     public void handleCheck(ActionEvent event){
-        System.out.println("pleple");
-        System.out.println(equitySlider.getValue()); //TU JEST TWÓJ SLIDER ;)
+
+        System.out.println(flopCards);
+        System.out.println(heroCards);
+
         ArrayList<String> hands = new ArrayList<>();
         String delims = "[, ]+";
         String[] tokens = input.getText().split(delims);
@@ -225,9 +258,57 @@ public class TrainingController implements Initializable{
                 checkButton.setDisable(true);
                 return;
             }
+            System.out.print(e + " : ");
             hands.addAll(rangeToHands(e));
         }
-        System.out.println(equitySlider.getValue()); //TU JEST TWÓJ SLIDER ;)
+
+        double myEstimation = equitySlider.getValue();
+        double realEstimation = 50.0;
+        double absoluteDifference = abs(myEstimation - realEstimation);
+        double relativeDifference = 0.0;
+        double averageAbsoluteDifference = 0.0;
+        double averageRelativeDifference = 0.0;
+
+        relativeDifferencesInSession.add(relativeDifference);
+        absoluteDifferencesInSession.add(absoluteDifference);
+
+        for(Double d : absoluteDifferencesInSession) {
+            averageAbsoluteDifference += d;
+        }
+        for(Double d : relativeDifferencesInSession) {
+            averageRelativeDifference += d;
+        }
+        averageAbsoluteDifference /= ((double)absoluteDifferencesInSession.size());
+
+
+        averageRelativeDifference /= ((double)relativeDifferencesInSession.size());
+
+
+        for (Node n : anchor.getChildren()) {
+            if (n.getId() != null && n.getId().equals("odds")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText(String.format("%.1f", realEstimation) + "%");
+            }
+            if (n.getId() != null && n.getId().equals("absdiff")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText(String.format("%.1f", absoluteDifference) + "%");
+            }
+            if (n.getId() != null && n.getId().equals("reldiff")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText(String.format("%.1f", relativeDifference) + "%");
+            }
+            if (n.getId() != null && n.getId().equals("saad")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText(String.format("%.1f", averageAbsoluteDifference) + "%");
+            }
+            if (n.getId() != null && n.getId().equals("sard")) {
+                javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                t.setText(String.format("%.1f", averageRelativeDifference) + "%");
+            }
+        }
+
+        System.out.println();
+        System.out.println(input.getText());
         System.out.println(hands);
     }
 
@@ -251,68 +332,12 @@ public class TrainingController implements Initializable{
                         t.setText(String.format("%.1f", newValue) + "%");
                     }
                 }
-                System.out.println("kurde " + newValue);
             }
         });
 
         checkButton.setDisable(true);
-        System.out.printf("initializing");
-        Deck deck = new Deck();
-        deck.shuffle();
-        Card card;
-        Image image;
 
-        boolean isSet = false;
-
-        while(!isSet) {
-            try {
-                card = deck.drawACard();
-                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-                hero1.setImage(image);
-                isSet = true;
-            } catch (Exception e) {
-            }
-        }
-        isSet = false;
-        while(!isSet) {
-            try {
-                card = deck.drawACard();
-                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-                hero2.setImage(image);
-                isSet = true;
-            } catch (Exception e) {
-            }
-        }
-        isSet = false;
-        while(!isSet) {
-            try {
-                card = deck.drawACard();
-                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-                flop1.setImage(image);
-                isSet = true;
-            } catch (Exception e) {
-            }
-        }
-        isSet = false;
-        while(!isSet) {
-            try {
-                card = deck.drawACard();
-                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-                flop2.setImage(image);
-                isSet = true;
-            } catch (Exception e) {
-            }
-        }
-        isSet = false;
-        while(!isSet) {
-            try {
-                card = deck.drawACard();
-                image = new Image(getClass().getResourceAsStream("/fxml/" + card.rank + card.suit + ".png"));
-                flop3.setImage(image);
-                isSet = true;
-            } catch (Exception e) {
-            }
-        }
+        getNewCardsToTrainOn();
     }
 
     @FXML
