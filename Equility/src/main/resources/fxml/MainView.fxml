@@ -17,10 +17,10 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeWindowButtonAction"  text="Quit"/>
+                        <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeWindowButtonAction" text="Quit" />
                     </items>
                     <items>
-                        <MenuItem fx:id="closeAll" mnemonicParsing="false" onAction="#closePlatformButtonAction"  text="Quit all"/>
+                        <MenuItem fx:id="closeAll" mnemonicParsing="false" onAction="#closePlatformButtonAction" text="Quit all" />
                     </items>
                 </Menu>
                 <!-- <Menu mnemonicParsing="false" text="Edit"> <items> <MenuItem mnemonicParsing="false" text="Delete" /> </items> </Menu> -->
@@ -164,11 +164,12 @@
                         <Label layoutX="14.0" layoutY="23.0" text="K&#10;&amp;spades;" visible="false" />
                     </children>
                 </Pane>
-                <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="34.0" opacity="0.85" prefHeight="439.0" prefWidth="454.0" style="-fx-background-color: transparent;" visible="false">
+                <Pane fx:id="Panel2" disable="true" layoutX="174.0" layoutY="10.0" prefHeight="477.0" prefWidth="502.0" style="-fx-background-color: transparent;" visible="false">
                     <children>
                         <GridPane prefHeight="90.0" prefWidth="454.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -176,10 +177,12 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="390" text="OK" GridPane.columnSpan="2" />
+                                <Button mnemonicParsing="false" onAction="#handlerConfirm" prefHeight="25.0" prefWidth="390.0" text="OK" GridPane.columnSpan="2" />
                                 <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
                             </children>
                         </GridPane>
+                          <Button layoutY="421.0" mnemonicParsing="false" onAction="#handlerClear" prefHeight="25.0" prefWidth="390.0" text="Clear" />
+                          <Button layoutY="448.0" mnemonicParsing="false" onAction="#handlerSelectAll" prefHeight="25.0" prefWidth="390.0" text="Select all" />
                     </children>
                 </Pane>
                 <Pane fx:id="displayPane" prefHeight="200.0" prefWidth="200.0" />

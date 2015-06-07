@@ -16,6 +16,7 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem mnemonicParsing="false" text="New" />
+                        <!--
                         <MenuItem mnemonicParsing="false" text="Open…" />
                         <Menu mnemonicParsing="false" text="Open Recent" />
                         <SeparatorMenuItem mnemonicParsing="false" />
@@ -26,8 +27,9 @@
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" text="Preferences…" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem onAction="#closeWindowButtonAction" mnemonicParsing="false" text="Quit" />
-                        <MenuItem onAction="#closePlatformButtonAction" mnemonicParsing="false" text="Quit all" />
+                        -->
+                        <MenuItem mnemonicParsing="false" onAction="#closeWindowButtonAction" text="Quit" />
+                        <MenuItem mnemonicParsing="false" onAction="#closePlatformButtonAction" text="Quit all" />
 
                     </items>
                 </Menu>
@@ -52,7 +54,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="371.0" prefWidth="309.0" VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="anchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="371.0" prefWidth="309.0" VBox.vgrow="ALWAYS">
             <children>
                 <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#62d78b2b" height="232.0" layoutX="8.0" layoutY="8.0" stroke="TRANSPARENT" strokeType="INSIDE" width="621.0" />
                 <Text layoutX="28.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Villain Range" wrappingWidth="135.93408203125">
@@ -85,7 +87,7 @@
                         <Image url="@revers.png" />
                     </image>
                 </ImageView>
-                <Slider layoutX="22.0" layoutY="192.0" prefHeight="26.0" prefWidth="255.0" />
+                <Slider fx:id="equitySlider" layoutX="22.0" layoutY="192.0" prefHeight="26.0" prefWidth="255.0" />
                 <ImageView fx:id="hero2" fitHeight="76.0" fitWidth="46.0" layoutX="166.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@revers.png" />
@@ -101,7 +103,7 @@
                         <Font size="22.0" />
                     </font>
                 </Text>
-                <Text layoutX="328.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%" wrappingWidth="144.0">
+                <Text id="lel" layoutX="284.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%" wrappingWidth="187.0">
                     <font>
                         <Font size="43.0" />
                     </font>
@@ -113,12 +115,12 @@
                 <Text fx:id="odds" layoutX="200.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
                 <Text layoutX="30.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Absolute difference:" wrappingWidth="144.0" />
                 <Text layoutX="30.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relative difference:" wrappingWidth="144.0" />
-                <Text fx:id="absdiff"  layoutX="200.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
-                <Text fx:id="reldiff"  layoutX="200.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
+                <Text fx:id="absdiff" layoutX="200.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
+                <Text fx:id="reldiff" layoutX="200.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
                 <Text layoutX="269.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session average relative difference:" wrappingWidth="144.0" />
                 <Text layoutX="269.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session average absolute difference:" wrappingWidth="144.0" />
-                <Text fx:id="sard"  layoutX="421.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
-                <Text fx:id="saad"  layoutX="421.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
+                <Text fx:id="sard" layoutX="421.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
+                <Text fx:id="saad" layoutX="421.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%" wrappingWidth="46.0" />
                 <TextField fx:id="input" layoutX="169.0" layoutY="23.0" onInputMethodTextChanged="#handleRangeInput" onKeyPressed="#handleRangeInput" onKeyReleased="#handleRangeInput" onKeyTyped="#handleRangeInput" prefHeight="25.0" prefWidth="439.0" />
             </children>
         </AnchorPane>

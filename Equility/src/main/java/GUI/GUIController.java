@@ -203,9 +203,6 @@ public class GUIController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
 
-            //hide this current window (if this is whant you want
-            //((Node)(event.getSource())).getScene().getWindow().hide();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

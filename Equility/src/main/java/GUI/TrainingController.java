@@ -3,17 +3,23 @@ package GUI;
 import Model.Card;
 import Model.Deck;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
+import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,13 +35,17 @@ import java.util.regex.Pattern;
 public class TrainingController implements Initializable{
     @FXML
     ImageView hero1, hero2, flop1, flop2, flop3;
-
-
     @FXML
     Slider equitySlider;
+    @FXML
+    TextField input;
+    @FXML
+    Button checkButton;
+    @FXML
+    AnchorPane anchor;
 
-    String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
-    String[] suits = {"c", "d", "h", "s"};
+    final static String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"};
+    final static String[] suits = {"c", "d", "h", "s"};
 
     @FXML
     private void handleNext(ActionEvent event) {
@@ -182,12 +192,6 @@ public class TrainingController implements Initializable{
         return result;
     }
 
-    @FXML
-    TextField input;
-    // 22-AA, 22  , 53s,63o-65o   A4s+
-
-    @FXML
-    Button checkButton;
 
     @FXML
     public void handleRangeInput(KeyEvent event){
@@ -203,9 +207,16 @@ public class TrainingController implements Initializable{
     }
 
 
+    @FXML
+    public void draggedSlider() {
+        System.out.println(equitySlider.getValue());
+    }
+
 
     @FXML
     public void handleCheck(ActionEvent event){
+        System.out.println("pleple");
+        System.out.println(equitySlider.getValue()); //TU JEST TWÓJ SLIDER ;)
         ArrayList<String> hands = new ArrayList<>();
         String delims = "[, ]+";
         String[] tokens = input.getText().split(delims);
@@ -222,6 +233,28 @@ public class TrainingController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        equitySlider.setMin(0);
+        equitySlider.setMax(100);
+        equitySlider.setValue(0);
+        equitySlider.setShowTickLabels(true);
+        equitySlider.setShowTickMarks(true);
+        equitySlider.setMajorTickUnit(50);
+        equitySlider.setMinorTickCount(5);
+        equitySlider.setBlockIncrement(10);
+        equitySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+                for (Node n : anchor.getChildren()) {
+                    if (n.getId() != null && n.getId().equals("lel")) {
+                        javafx.scene.text.Text t = (javafx.scene.text.Text) n;
+                        t.setText(String.format("%.1f", newValue) + "%");
+                    }
+                }
+                System.out.println("kurde " + newValue);
+            }
+        });
+
         checkButton.setDisable(true);
         System.out.printf("initializing");
         Deck deck = new Deck();
