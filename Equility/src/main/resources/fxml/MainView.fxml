@@ -38,7 +38,7 @@
         </MenuBar>
         <Pane prefHeight="498.0" prefWidth="800.0">
             <children>
-                <Pane fx:id="Panel1" layoutX="86.0" layoutY="68.0" prefHeight="336.0" prefWidth="635.0">
+                <Pane fx:id="Panel1" layoutX="86.0" layoutY="68.0" prefHeight="335.0" prefWidth="580.0">
                     <children>
                         <Rectangle arcHeight="400.0" arcWidth="400.0" height="414.0" layoutX="-76.0" layoutY="-44.0" stroke="TRANSPARENT" strokeType="INSIDE" width="776.0">
                             <fill>
@@ -52,7 +52,7 @@
                                 </RadialGradient>
                             </fill>
                         </Rectangle>
-                        <Label fx:id="MP3" alignment="CENTER" layoutX="3.0" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
+                        <Label fx:id="MP3" alignment="CENTER" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP3">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
@@ -72,27 +72,27 @@
                                 <Image url="@revers.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="BB" alignment="CENTER" layoutX="265.0" layoutY="260.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
+                        <Label fx:id="BB" alignment="CENTER" layoutX="265.0" layoutY="255.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BB">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="MP2" alignment="CENTER" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="85.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
+                        <Label fx:id="MP2" alignment="CENTER" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="MP2">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="SB" alignment="CENTER" layoutX="510.0" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
+                        <Label fx:id="SB" alignment="CENTER" layoutX="500.0" layoutY="220.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="SB">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="CO" alignment="CENTER" layoutX="265.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
+                        <Label fx:id="CO" alignment="CENTER" layoutX="265.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="CO">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label fx:id="BU" alignment="CENTER" layoutX="510.0" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="76.0" prefWidth="73.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
+                        <Label fx:id="BU" alignment="CENTER" layoutX="500.0" layoutY="40.0" onMouseClicked="#handleLabelPosition" onMouseEntered="#handleMouseEntered" onMouseExited="#handleMouseExited" prefHeight="80.0" prefWidth="80.0" style="-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d;" text="BU">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
@@ -109,32 +109,32 @@
                         </ImageView>
                         <Group fx:id="equityDisplays">
                             <children>
-                                <Text fx:id="eqCO" layoutX="350.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqBB" layoutX="350.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqBB" layoutX="350.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqSB" layoutX="585.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqSB" layoutX="588.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqMP3" layoutX="85.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqMP3" layoutX="100.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false" wrappingWidth="145.5087890625">
+                                <Text fx:id="eqMP2" layoutX="85.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqMP2" layoutX="94.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqBU" layoutX="585.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="eqBU" layoutX="588.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
+                                <Text fx:id="eqCO" layoutX="350.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="2.0" text="Text" visible="false">
                                     <font>
                                         <Font size="31.0" />
                                     </font>
@@ -169,7 +169,7 @@
                         <GridPane prefHeight="90.0" prefWidth="454.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints />
+                                <ColumnConstraints />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -181,11 +181,11 @@
                                 <TextField fx:id="Input" prefHeight="25.0" prefWidth="426.0" visible="false" GridPane.columnSpan="2" />
                             </children>
                         </GridPane>
-                          <Button layoutY="421.0" mnemonicParsing="false" onAction="#handlerClear" prefHeight="25.0" prefWidth="390.0" text="Clear" />
-                          <Button layoutY="448.0" mnemonicParsing="false" onAction="#handlerSelectAll" prefHeight="25.0" prefWidth="390.0" text="Select all" />
+                        <Button layoutY="421.0" mnemonicParsing="false" onAction="#handlerClear" prefHeight="25.0" prefWidth="390.0" text="Clear" />
+                        <Button layoutY="448.0" mnemonicParsing="false" onAction="#handlerSelectAll" prefHeight="25.0" prefWidth="390.0" text="Select all" />
                     </children>
                 </Pane>
-                <Pane fx:id="displayPane" prefHeight="200.0" prefWidth="200.0" />
+                <Pane fx:id="displayPane" disable="true" prefHeight="50.0" prefWidth="50.0" visible="false" />
             </children></Pane>
         <TilePane prefHeight="17.0" prefWidth="800.0">
             <children>

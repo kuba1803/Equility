@@ -96,13 +96,14 @@ public class GUIController implements Initializable {
     Text eqMP2;
     @FXML
     Group equityDisplays;
+    @FXML
+    Pane displayPane;
 
 
-    /*
-        handleButtonClear czysci zarowno range, jak i boarda
-     */
+    //handleButtonClear czysci wszystko
     @FXML
     private void handleButtonClear(ActionEvent event) {
+        //odkolorowuje kwadraciki z graczami
         ObservableList list = Panel1.getChildren();
         Iterator iter = list.iterator();
         while (iter.hasNext()) {
@@ -113,6 +114,7 @@ public class GUIController implements Initializable {
                 l.setStyle("-fx-border-width: 5; -fx-border-color: #000000; -fx-background-color: #8d8d8d");
             }
         }
+        //odznacza boarda
         for (String key : clickedBoard.keySet()) {
             ImageView needChange = clickedBoard.get(key);
             needChange.setImage(new Image(getClass().getResourceAsStream("/fxml/revers.png")));
@@ -120,7 +122,7 @@ public class GUIController implements Initializable {
         clickedBoard.clear();
         contr.Clear();
         Output.clear();
-
+        //czysci pola z pokazanymi oddsami
         for (Node n : equityDisplays.getChildren()) {
             if (n.getClass().equals(Text.class)) {
                 Text t = (Text) n;
@@ -130,8 +132,6 @@ public class GUIController implements Initializable {
         }
     }
 
-    @FXML
-    Pane displayPane;
 
     /*
     obsuguje najechanie myszka na goscia
@@ -140,50 +140,43 @@ public class GUIController implements Initializable {
     private void handleMouseEntered(MouseEvent event) {
 
         displayPane.setStyle("-fx-background-color: transparent;");
-        double scale = 2.5;
-        displayPane.setPrefSize(20 / scale, 20 / scale);
-
         actual = (Label) event.getSource();
         String tempRange = contr.getRange(actual.getText());
         System.out.println(tempRange);
 
         for (int row = 0; row < 13; row++) {
             for (int col = 0; col < 13; col++) {
-                final RangeRect rectangle = new RangeRect(25 / scale, 25 / scale);
+                final RangeRect rectangle = new RangeRect(10, 10);
 
                 String h = null;
-                if (row > col)
+                if (row > col) {
                     h = intToRank(col) + intToRank(row) + "o";
-                else if (row < col)
+                } else if (row < col) {
                     h = intToRank(row) + intToRank(col) + "s";
-                else
+                } else {
                     h = intToRank(row) + intToRank(row);
+                }
 
-                final Text handName = new Text(h);
                 if (tempRange.contains(h)) {
                     rectangle.setFill(Paint.valueOf("Red"));
                 } else {
                     rectangle.setFill(Paint.valueOf(getColorChoose(row, col)));
                 }
+
                 rectangle.setStroke(Paint.valueOf("grey"));
-
-
                 rectangle.col = col;
                 rectangle.row = row;
-                rectangle.setX((160) + (col * 25) / scale);
-
-                rectangle.setY((50) + (row * 25) / scale);
+                rectangle.setX(col * 10);
+                rectangle.setY(row * 10);
                 displayPane.getChildren().add(rectangle);
-
-
             }
         }
 
-
         displayPane.setMouseTransparent(true);
         displayPane.toFront();
-        displayPane.setLayoutX(Math.min(((Label) event.getSource()).getLayoutX(), Panel1.getWidth() - (13 * 25 + 50) / scale));
-        displayPane.setLayoutY(Math.min(((Label) event.getSource()).getLayoutY(), Panel1.getHeight() - (13 * 25 + 50) / scale));
+
+        displayPane.setLayoutX(actual.getLayoutX() + 165);
+        displayPane.setLayoutY(actual.getLayoutY() + 40);
         displayPane.setVisible(true);
     }
 
