@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -226,6 +227,15 @@ public class GUIController implements Initializable {
     @FXML
     private void handleButtonCompute(ActionEvent event) {
 
+
+        for (Node n : equityDisplays.getChildren()) {
+            if (n.getClass().equals(Text.class)) {
+                Text t = (Text) n;
+                t.setText("zero range");
+                t.setVisible(false);
+            }
+        }
+
         HashMap<String, String> ranges = new HashMap<String, String>();
 
         for (Node n : equityDisplays.getChildren()) {
@@ -356,49 +366,40 @@ public class GUIController implements Initializable {
         return "LIGHTBLUE";
     }
 
-    @FXML
-    private void handleLabelPosition(MouseEvent event) {
-        System.out.println(event.getSource());
-        actual = (Label) event.getSource();
-        Input.setText(contr.getRange(actual.getText()));
+    class MarkHand implements javafx.event.EventHandler<MouseEvent> {
 
-        Panel1.setDisable(true);
-        Panel2.setVisible(true);
-        Panel2.setDisable(false);
-        System.out.println(actual.getText());
+        RangeRect which;
 
-        class MarkHand implements javafx.event.EventHandler<MouseEvent> {
+        MarkHand(RangeRect which) {
+            this.which = which;
+        }
 
-            RangeRect which;
+        @Override
+        public void handle(MouseEvent t) {
+            int row = which.row;
+            int col = which.col;
 
-            MarkHand(RangeRect which) {
-                this.which = which;
+            String h;
+            if (row > col) {
+                h = intToRank(col) + intToRank(row) + "o ";
+            } else if (row < col) {
+                h = intToRank(row) + intToRank(col) + "s ";
+            } else {
+                h = intToRank(row) + intToRank(row) + " ";
             }
-
-            @Override
-            public void handle(MouseEvent t) {
-                int row = which.row;
-                int col = which.col;
-
-                String h;
-                if (row > col) {
-                    h = intToRank(col) + intToRank(row) + "o ";
-                } else if (row < col) {
-                    h = intToRank(row) + intToRank(col) + "s ";
-                } else {
-                    h = intToRank(row) + intToRank(row) + " ";
-                }
-                if (which.getFill().equals(Color.RED)) {
-                    //System.out.println("hello " + h);
-                    String oldText = Input.getText();
-                    Input.setText(oldText.replaceAll(h, ""));
-                    which.setFill(Color.valueOf(getColorChoose(row, col)));
-                } else {
-                    Input.appendText(h);
-                    which.setFill(Color.RED);
-                }
+            if (which.getFill().equals(Color.RED)) {
+                //System.out.println("hello " + h);
+                String oldText = Input.getText();
+                Input.setText(oldText.replaceAll(h, ""));
+                which.setFill(Color.valueOf(getColorChoose(row, col)));
+            } else {
+                Input.appendText(h);
+                which.setFill(Color.RED);
             }
         }
+    }
+
+    private void showTableForChoosingRange() {
 
         int sizeOfRectangle = 30;
         for (int row = 0; row < 13; row++) {
@@ -453,9 +454,52 @@ public class GUIController implements Initializable {
         }
 
         ranges.remove(actual.getId());
-        //ranges.put(actual.getId(), )
     }
 
+    @FXML
+    private void handleLabelPosition(MouseEvent event) {
+        System.out.println(event.getSource());
+        actual = (Label) event.getSource();
+        Input.setText(contr.getRange(actual.getText()));
+
+        Panel1.setDisable(true);
+        Panel2.setVisible(true);
+        Panel2.setDisable(false);
+        System.out.println(actual.getText());
+
+        showTableForChoosingRange();
+
+
+    }
+
+    @FXML
+    private void handlerSelectAll(ActionEvent event) {
+        Input.clear();
+        for (int row = 0; row < 13; row++) {
+            for (int col = 0; col < 13; col++) {
+                String h;
+                if (row > col) {
+                    h = intToRank(col) + intToRank(row) + "o ";
+                } else if (row < col) {
+                    h = intToRank(row) + intToRank(col) + "s ";
+                } else {
+                    h = intToRank(row) + intToRank(row) + " ";
+                }
+                Input.appendText(h);
+            }
+        }
+
+        showTableForChoosingRange();
+    }
+
+    @FXML
+    private void handlerClear(ActionEvent event) {
+        Input.setText(contr.getRange(actual.getText()));
+        contr.setRange(actual.getText(), "");
+        Input.clear();
+
+        showTableForChoosingRange();
+    }
 
     @FXML
     private void handlerConfirm(ActionEvent event) {
@@ -508,5 +552,13 @@ public class GUIController implements Initializable {
         contr = MainApp.contr;
     }
 
+    @FXML
+    private void closeWindowButtonAction(ActionEvent event) {
+        ((Stage)Panel1.getScene().getWindow()).close();
+    }
 
+    @FXML
+    private void closePlatformButtonAction(ActionEvent event) {
+        Platform.exit();
+    }
 }
