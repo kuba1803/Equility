@@ -39,9 +39,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -212,13 +210,18 @@ public class GUIController implements Initializable {
         return bd.doubleValue();
     }
 
-    /*
-    do obliczania oddsow
-     */
+
+
+    @FXML
+    public void copyOutputToClipboard(ActionEvent event) {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent content = new ClipboardContent();
+        content.putString(Output.getText());
+        clipboard.setContent(content);
+    }
+
     @FXML
     private void handleButtonCompute(ActionEvent event) {
-
-
         for (Node n : equityDisplays.getChildren()) {
             if (n.getClass().equals(Text.class)) {
                 Text t = (Text) n;
@@ -240,26 +243,59 @@ public class GUIController implements Initializable {
         }
 
         if (ranges.size() < 2) {
-            Output.appendText("inefficient number of players\n");
+            Output.appendText("Insufficient number of players\n");
             return;
         }
 
         HashMap<String, Double> odds = contr.getEquity(ranges, new HashSet<String>(clickedBoard.keySet()));
 
-        for (Node n : equityDisplays.getChildren()) {
-            if (n.getClass().equals(Text.class)) {
-                String id = n.getId().substring(2);
-                if (odds.keySet().contains(id)) {
-                    Text t = (Text) n;
-                    t.setText(round(odds.get(id), 2) + "%");
-                    t.setFill(Color.valueOf("black"));
-                    t.setVisible(true);
-                } else {
-                    Text t = (Text) n;
-                    t.setText("zero range");
-                    t.setVisible(false);
+        //teraz wyswietlam oddsy oraz wyswietlam wynik w tym polu tekstowym:
+        if(odds.get("impossible") != null) {
+            Output.appendText("Board: ");
+            for (String s : clickedBoard.keySet()) {
+                Output.appendText(s + " ");
+            }
+            Output.appendText("\n" + "Players:\n");
+            for (Node n : equityDisplays.getChildren()) {
+                if (n.getClass().equals(Text.class)) {
+                    String id = n.getId().substring(2);
+                    if (odds.keySet().contains(id)) {
+                        Text t = (Text) n;
+                        t.setText("-");
+                        Output.appendText("  " + id + ":\n" + "    Range: " + ranges.get(id) + "\n");
+                        t.setFill(Color.valueOf("black"));
+                        t.setVisible(true);
+                    } else {
+                        Text t = (Text) n;
+                        t.setText("zero range");
+                        t.setVisible(false);
+                    }
                 }
             }
+            Output.appendText("Incorrect!\n\n");
+        } else {
+            Output.appendText("Board: ");
+            for (String s : clickedBoard.keySet()) {
+                Output.appendText(s + " ");
+            }
+            Output.appendText("\n" + "Players:\n");
+            for (Node n : equityDisplays.getChildren()) {
+                if (n.getClass().equals(Text.class)) {
+                    String id = n.getId().substring(2);
+                    if (odds.keySet().contains(id)) {
+                        Text t = (Text) n;
+                        t.setText(round(odds.get(id), 2) + "%");
+                        Output.appendText("  " + id + ":\n" + "    Range: " + ranges.get(id) + "\n" + "    Equity: " + round(odds.get(id), 2) + "%\n");
+                        t.setFill(Color.valueOf("black"));
+                        t.setVisible(true);
+                    } else {
+                        Text t = (Text) n;
+                        t.setText("zero range");
+                        t.setVisible(false);
+                    }
+                }
+            }
+            Output.appendText("\n");
         }
     }
 
@@ -267,8 +303,8 @@ public class GUIController implements Initializable {
         Output.appendText(text);
     }
 
-    String[] ranks = {"A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"};
-    String[] suits = {"s", "h", "d", "c"};
+    private final String[] ranks = {"A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"};
+    private final String[] suits = {"s", "h", "d", "c"};
 
     public String intToRank(int r) {
         return ranks[r];

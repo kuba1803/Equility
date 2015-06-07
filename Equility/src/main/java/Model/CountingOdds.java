@@ -170,7 +170,6 @@ public class CountingOdds {
             cardsOnBoard.add(new Card(s.substring(0, 1), s.substring(1, 2)));
         }
 
-
         for (int i = 0; i < numberOfDrawings; i++) {
             losuj(exactRanges, cardsOnBoard, onePoint, points);
         }
@@ -180,7 +179,7 @@ public class CountingOdds {
             for (int i = 0; i < n; i++) {
                 result.put(ids.get(i), 100.0 / ((double) n));
             }
-
+            result.put("impossible", 0.0);
             return result;
         }
 

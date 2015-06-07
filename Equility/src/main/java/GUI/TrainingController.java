@@ -243,7 +243,6 @@ public class TrainingController implements Initializable{
         checkButton.setDisable(false);
     }
 
-
     @FXML
     public void handleCheck(ActionEvent event){
 
