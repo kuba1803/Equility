@@ -40,6 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -289,6 +290,18 @@ public class GUIController implements Initializable {
      */
     @FXML
     private void handleTableChoice(final MouseEvent clickTableCard) {
+        //prawym przyciskiem odklikujemy karte:
+        if(clickTableCard.getButton() == MouseButton.SECONDARY) {
+            for (String key : clickedBoard.keySet()) {
+                if (clickedBoard.get(key).equals(((ImageView) clickTableCard.getSource()))) {
+                    clickedBoard.remove(key);
+                    ((ImageView) clickTableCard.getSource()).setImage(new Image(getClass().getResourceAsStream("/fxml/revers.png")));
+                    break;
+                }
+            }
+            return;
+        }
+
         Panel3.setVisible(true);
         Panel3.setDisable(false);
         Panel1.setDisable(true);
