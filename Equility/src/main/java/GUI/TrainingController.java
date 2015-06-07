@@ -143,22 +143,22 @@ public class TrainingController implements Initializable{
 
     //(A[23456789TJQKA]|K[23456789TJQK]|Q[23456789TJQ]|J[23456789TJ]|T[23456789T]|9[23456789]|8[2345678]|7[234567]|6[[23456]|5[2345]|4[234]|3[23]|2)
 
-    boolean isPlusRange (String hand){
+    public static boolean isPlusRange (String hand){
         return Pattern.matches("((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])([so]\\+))" , hand);
     }
 
-    boolean isPlainHand(String hand){
+    public static boolean isPlainHand(String hand){
         return Pattern.matches("((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so])|(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK|AA)", hand);
     }
 
-    int toInt(String r){
+    public static int toInt(String r){
         return Arrays.asList(ranks).indexOf(r);
     }
-    int toInt(char r){
+    public static int toInt(char r){
         return Arrays.asList(ranks).indexOf(String.valueOf(r));
     }
 
-    boolean isPairRange(String hand){
+    public static boolean isPairRange(String hand){
         boolean pre = Pattern.matches("(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK|AA)-(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK|AA)", hand);
         if(!pre)
             return false;
@@ -167,7 +167,7 @@ public class TrainingController implements Initializable{
         return true;
 
     }
-    boolean isNormalRange(String hand){
+    public static boolean isNormalRange(String hand){
         boolean pre = Pattern.matches("(((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so])-((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so]))", hand);
 
         if(!pre)
@@ -184,12 +184,12 @@ public class TrainingController implements Initializable{
         return true;
     }
 
-    boolean isPairPlus(String hand){
+    public static boolean isPairPlus(String hand){
         return Pattern.matches("(22|33|44|55|66|77|88|99|TT|JJ|QQ|KK)\\+", hand);
 
     }
 
-    boolean isProperRange(String hand){
+    public static boolean isProperRange(String hand){
         if(isPlusRange(hand))
             return true;
         if(isPairRange(hand))
@@ -203,7 +203,7 @@ public class TrainingController implements Initializable{
         return false;
     }
 
-    List<String> rangeToHands(String range){
+    public static List<String> rangeToHands(String range){
         ArrayList<String> result = new ArrayList<String>();
         if(isNormalRange(range)){
             for(int i = toInt(range.charAt(1)); i<=toInt(range.charAt(5)); i++)

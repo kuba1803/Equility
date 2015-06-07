@@ -9,7 +9,6 @@ import Controller.MainControler;
 import equility.MainApp;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,21 +18,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -64,7 +59,8 @@ public class GUIController implements Initializable {
     Pane Panel3;
     @FXML
     TextArea Output;
-
+    @FXML
+    TextArea Input2;
 
     @FXML
     ImageView flop1;
@@ -599,5 +595,31 @@ public class GUIController implements Initializable {
     @FXML
     private void closePlatformButtonAction(ActionEvent event) {
         Platform.exit();
+    }
+    @FXML
+    private void ButtonUstaw(ActionEvent event)
+    {
+        if(Input2.getText().isEmpty())
+        {
+            Output.setText("Nie podano Range");
+            return;
+        }
+        String[] tokens = Input2.getText().split("[, ]+");
+        for(String e: tokens){
+            if(!TrainingController.isProperRange(e)) {
+                Output.setText("Bład : "+e);
+                return;
+            }
+        }
+        handlerClear(event);
+        for(String e: tokens){
+            List<String> l = TrainingController.rangeToHands(e);
+            Iterator<String> iter = l.iterator();
+            while(iter.hasNext())
+            {
+                Input.appendText(iter.next()+" ");   
+            }
+        }
+        showTableForChoosingRange();
     }
 }

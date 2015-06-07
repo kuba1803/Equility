@@ -186,6 +186,8 @@
                         </GridPane>
                         <Button layoutY="421.0" mnemonicParsing="false" onAction="#handlerClear" prefHeight="25.0" prefWidth="390.0" text="Clear" />
                         <Button layoutY="448.0" mnemonicParsing="false" onAction="#handlerSelectAll" prefHeight="25.0" prefWidth="390.0" text="Select all" />
+                  <TextArea fx:id="Input2" layoutX="390.0" layoutY="120.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Button layoutX="390.0" layoutY="320.0" mnemonicParsing="false" onAction="#ButtonUstaw" prefHeight="25.0" prefWidth="200.0" text="Ustwa" />
                     </children>
                 </Pane>
                 <Pane fx:id="displayPane" disable="true" prefHeight="50.0" prefWidth="50.0" visible="false" />
