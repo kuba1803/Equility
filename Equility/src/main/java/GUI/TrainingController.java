@@ -1,6 +1,7 @@
 package GUI;
 
 import Model.Card;
+import Model.CountingOdds;
 import Model.Deck;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -21,10 +22,8 @@ import javafx.stage.Stage;
 import javax.xml.soap.Text;
 import java.awt.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import static java.lang.Math.abs;
@@ -170,6 +169,7 @@ public class TrainingController implements Initializable{
     }
     boolean isNormalRange(String hand){
         boolean pre = Pattern.matches("(((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so])-((A[23456789TJQK]|K[23456789TJQA]|Q[23456789TJKA]|J[23456789TQKA]|T[23456789JQKA]|9[2345678TJQKA]|8[2345679TJQKA]|7[2345689TJQKA]|6[2345789TJQKA]|5[2346789TJQKA]|4[2356789TJQKA]|3[2456789TJQKA]|2[3456789TJQKA])[so]))", hand);
+
         if(!pre)
             return false;
 
@@ -262,8 +262,11 @@ public class TrainingController implements Initializable{
             hands.addAll(rangeToHands(e));
         }
 
+        HashSet<String> uniqueHands = new HashSet<String>(hands);
+        HashMap<String, Double> calculatedOdds = CountingOdds.countTraining(heroCards, uniqueHands, flopCards);
+
         double myEstimation = equitySlider.getValue();
-        double realEstimation = 50.0;
+        double realEstimation = calculatedOdds.get("Hero");
         double absoluteDifference = abs(myEstimation - realEstimation);
         double relativeDifference = 0.0;
         double averageAbsoluteDifference = 0.0;
@@ -278,8 +281,9 @@ public class TrainingController implements Initializable{
         for(Double d : relativeDifferencesInSession) {
             averageRelativeDifference += d;
         }
-        averageAbsoluteDifference /= ((double)absoluteDifferencesInSession.size());
 
+
+        averageAbsoluteDifference /= ((double)absoluteDifferencesInSession.size());
 
         averageRelativeDifference /= ((double)relativeDifferencesInSession.size());
 

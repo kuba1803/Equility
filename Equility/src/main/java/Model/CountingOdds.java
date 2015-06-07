@@ -1,5 +1,7 @@
 package Model;
 
+import sun.plugin.dom.html.ns4.HTMLAnchorCollection;
+
 import java.util.*;
 
 /**
@@ -7,7 +9,7 @@ import java.util.*;
  */
 public class CountingOdds {
     final static String[] suits = {"s", "h", "d", "c"};
-    final static int numberOfDrawings = 20000;
+    static int numberOfDrawings = 20000;
     static int actualNumberOfDrawings;
 
     static Set<Card> avaliableCards;
@@ -180,6 +182,76 @@ public class CountingOdds {
             }
 
             return result;
+        }
+
+        for (int i = 0; i < n; i++) {
+            double d = (double) points[i];
+            d /= (double) onePoint;
+            d /= (double) actualNumberOfDrawings;
+            d *= 100;
+
+            result.put(ids.get(i), d);
+        }
+
+        return result;
+    }
+
+    public static HashMap<String, Double> countTraining(ArrayList<Card> heroCards, HashSet<String> range, ArrayList<Card> board) {
+        ArrayList<ArrayList<Hand>> exactRanges = new ArrayList<>();
+
+        ArrayList<Hand> hero = new ArrayList<>(); hero.add(new Hand(heroCards.get(0), heroCards.get(1)));
+        ArrayList<Hand> villain = new ArrayList<>();
+
+        for (String s : range) {
+            int i = 0;
+            while (i < s.length()) {
+                String tmp = "";
+                while (i < s.length() && s.charAt(i) != ' ') {
+                    tmp = tmp + s.substring(i, i + 1);
+                    i++;
+                }
+
+                if (tmp.length() == 2 || tmp.charAt(2) == 'o') {
+                    for (String suit1 : suits) {
+                        for (String suit2 : suits) {
+                            if (!suit1.equals(suit2)) {
+                                String ple = tmp.substring(0, 1) + suit1 + tmp.substring(1, 2) + suit2;
+                                if (suit1.compareTo(suit2) > 0 && tmp.substring(0, 1).equals(tmp.substring(1, 2))) {
+
+                                } else {
+                                    villain.add(new Hand(ple));
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if(tmp.charAt(0) == tmp.charAt((1))) continue; //JJs
+
+                    for (String suit : suits) {
+                        String ple = tmp.substring(0, 1) + suit + tmp.substring(1, 2) + suit;
+                        villain.add(new Hand(ple));
+                    }
+                }
+                i++;
+            }
+        }
+        //id graczy
+        ArrayList<String> ids = new ArrayList<String>();
+        ids.add("Hero");
+        ids.add("Villain");
+        exactRanges.add(hero);
+        exactRanges.add(villain);
+
+        int n = 2;
+        int onePoint = 2;
+        int points[] = new int[2];
+        HashMap result = new HashMap<String, Double>();
+        ArrayList<Card> cardsOnBoard = new ArrayList<Card>(board);
+        numberOfDrawings = 100000;
+        actualNumberOfDrawings = numberOfDrawings;
+
+        for (int i = 0; i < numberOfDrawings; i++) {
+            losuj(exactRanges, cardsOnBoard, onePoint, points);
         }
 
         for (int i = 0; i < n; i++) {
