@@ -210,7 +210,7 @@ public class TrainingController implements Initializable{
                 result.add(range.charAt(0)+ranks[i]+range.charAt(2));
         }
         if(isPlusRange(range)){
-            for(int i=toInt(range.charAt(1)); i<=toInt(range.charAt(0)); i++)
+            for(int i=toInt(range.charAt(1)); i<toInt(range.charAt(0)); i++)
                 result.add(range.charAt(0)+ranks[i]+range.charAt(2));
         }
 
