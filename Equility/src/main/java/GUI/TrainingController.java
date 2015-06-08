@@ -267,7 +267,8 @@ public class TrainingController implements Initializable{
         double myEstimation = equitySlider.getValue();
         double realEstimation = calculatedOdds.get("Hero");
         double absoluteDifference = abs(myEstimation - realEstimation);
-        double relativeDifference = 0.0;
+        double relativeDifference = abs(myEstimation - realEstimation)/realEstimation*100;
+        System.out.println(relativeDifference);
         double averageAbsoluteDifference = 0.0;
         double averageRelativeDifference = 0.0;
 
